@@ -1,0 +1,14 @@
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.csprojAssemblyReference.cache
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.csproj.CoreCompileInputs.cache
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.RazorAssemblyInfo.cache
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.RazorAssemblyInfo.cs
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.AssemblyInfoInputs.cache
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.AssemblyInfo.cs
+/home/adrianemmott/testApp/webApi/bin/Debug/netcoreapp2.2/webApi.deps.json
+/home/adrianemmott/testApp/webApi/bin/Debug/netcoreapp2.2/webApi.runtimeconfig.json
+/home/adrianemmott/testApp/webApi/bin/Debug/netcoreapp2.2/webApi.runtimeconfig.dev.json
+/home/adrianemmott/testApp/webApi/bin/Debug/netcoreapp2.2/webApi.dll
+/home/adrianemmott/testApp/webApi/bin/Debug/netcoreapp2.2/webApi.pdb
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.RazorTargetAssemblyInfo.cache
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.dll
+/home/adrianemmott/testApp/webApi/obj/Debug/netcoreapp2.2/webApi.pdb

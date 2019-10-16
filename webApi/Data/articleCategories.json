@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "title": "Sales",
+    "categories": 
+    [
+      {"id": 2, "title":"New"},
+      {"id": 3, "title":"Used"},
+      {"id": 4, "title":"Fleet and Business"},
+      {"id": 5, "title":"Fleetboard"}
+    ]
+
+  },
+  {
+    "id": 6,
+    "title": "Marketing",
+    "categories": 
+    [
+      {"id": 7, "title":"New"},
+      {"id": 8, "title":"Used"},
+      {"id": 9, "title":"New Vans"},
+      {"id": 10, "title":"Used Vans"}
+    ]
+  }
+]
