@@ -1,0 +1,74 @@
+<div class="col-md-12 box">
+  <h1>Article manager</h1>
+
+  <!-- <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Basic info.
+      </ng-template>
+      <section *ngIf="article">
+        <app-publisher-step1 [article]="article" (step1Complete)="showStep2($event)"></app-publisher-step1>
+      </section>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Content
+      </ng-template>
+      <section *ngIf="article">
+        <app-publisher-step2 [article]="article"></app-publisher-step2>
+      </section>
+    </mat-tab>
+  </mat-tab-group> -->
+
+  <mat-spinner *ngIf="!article"></mat-spinner>
+
+  <mat-horizontal-stepper *ngIf="article" (selectionChange)="getArticleData($event)">
+    <mat-step label="Basic info" state="phone">
+      <app-publisher-step1 [article]="article"></app-publisher-step1>
+      <div>
+        <button (click)="getArticleDataFromStep1()" mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Content" state="chat">
+      <app-publisher-step2 [article]="article"></app-publisher-step2>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button (click)="getArticleDataFromStep2()" mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Attachments">
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step label="Preferences">
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step label="Location">
+        <div>
+            <app-publisher-step5 [article]="article"></app-publisher-step5>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step label="Preview">
+      <p>Ready to publish</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="updateArticleClick()">Publish</button>
+      </div>
+    </mat-step>
+  
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="phone">
+      <mat-icon>call_end</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chat">
+      <mat-icon>forum</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>
+</div>

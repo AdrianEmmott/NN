@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Network News</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+      body, html {
+        color: red;
+        background-color: white;
+        height: 100%;
+      }
+  
+      .app-loading {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+  
+      .logo-loading {
+        width: 220px;
+        height: 220px;
+        border-radius: 220px;
+        background: url(./assets/images/loader.png) center center no-repeat;
+        animation: rotate 2s linear infinite;
+        transform-origin: center center;
+        position: absolute;
+      }
+  
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+  
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+  
+        50% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -35px;
+        }
+  
+        100% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -124px;
+        }
+      }
+    </style>
+</head>
+<body>
+  <app-root>
+      <div class="app-loading">
+          <div class="logo-loading"></div>
+        </div>
+  </app-root>
+</body>
+</html>
