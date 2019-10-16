@@ -7,9 +7,10 @@ import { switchMap } from 'rxjs/operators';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { SelectionModel } from '@angular/cdk/collections';
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 interface INode {
+  id: number;
   title: string;
   categories?: INode[];
   selected: boolean;
@@ -17,6 +18,7 @@ interface INode {
 
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
+  id: number;
   expandable: boolean;
   selected: boolean;
   title: string;
@@ -32,8 +34,7 @@ export class PublisherStep5Component implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private articleCategoryService: ArticleCategoryService) {
-
-              }
+  }
   public articleCategoryObservable$: Observable<ArticleCategory[]>;
   public articleCategories: ArticleCategory[];
   @Input() article: Article;
@@ -42,6 +43,7 @@ export class PublisherStep5Component implements OnInit {
     return {
       expandable: !!node.categories && node.categories.length > 0,
       title: node.title,
+      id: node.id,
       selected: node.selected,
       level
     };
@@ -57,8 +59,8 @@ export class PublisherStep5Component implements OnInit {
     node => node.expandable, node => node.categories);
 
   // tslint:disable-next-line: member-ordering
-  dataSource = new MatTreeFlatDataSource( this.treeControl,
-                                          this.treeFlattener);
+  dataSource = new MatTreeFlatDataSource(this.treeControl,
+    this.treeFlattener);
 
   // tslint:disable-next-line: member-ordering
   dataChange = new BehaviorSubject<ExampleFlatNode[]>([]);
@@ -73,7 +75,7 @@ export class PublisherStep5Component implements OnInit {
 
   /* Checks all the parents when a leaf node is selected/unselected */
   checkAllParentsSelection(node: ExampleFlatNode): void {
-    console.log(node.selected);
+    // console.log(node);
     let parent: ExampleFlatNode | null = this.getParentNode(node);
     while (parent) {
       this.checkRootNodeSelection(parent);
@@ -150,7 +152,6 @@ export class PublisherStep5Component implements OnInit {
   /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
   todoLeafItemSelectionToggle(node: ExampleFlatNode): void {
     this.checklistSelection.toggle(node);
-    console.log(this.checklistSelection);
     this.checkAllParentsSelection(node);
   }
 
@@ -159,22 +160,46 @@ export class PublisherStep5Component implements OnInit {
   }
 
   getArticleCategories() {
-      this.articleCategoryObservable$ = this.route.paramMap.pipe(
-        switchMap((params: ParamMap) =>
-          this.articleCategoryService.getArticleCategories(+params.get('id')))
-      );
+    this.articleCategoryObservable$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.articleCategoryService.getArticleCategories(+params.get('id')))
+    );
 
-      this.articleCategoryObservable$.subscribe((articleCategories: ArticleCategory[]) => {
-        this.articleCategories = articleCategories;
+    this.articleCategoryObservable$.subscribe((articleCategories: ArticleCategory[]) => {
+      this.articleCategories = articleCategories;
 
-        // debug
-        this.articleCategories.forEach(element => {
-          element.selected = this.article.tags.includes(element.id);
+      // set treeview tags selected in data source
+      this.articleCategories.forEach(tag => {
+        tag.selected = this.article.tags.includes(tag.id);
+
+        console.log(tag.title + ', ' + tag.selected);
+
+        tag.categories.forEach(childTag => {
+          if (tag.selected) {
+            childTag.selected = true;
+          } else {
+            childTag.selected = this.article.tags.includes(childTag.id);
+          }
         });
-
-        this.dataSource.data = this.articleCategories;
-        console.log(this.dataSource);
-        console.log(this.article);
       });
+
+      this.dataSource.data = this.articleCategories;
+
+
+      const descendants = this.treeControl.dataNodes;
+      // Set the tree node data source checked state
+      descendants.forEach(child => {
+        if (child.selected) {
+          this.checklistSelection.select(child);
+        }
+
+        this.checkAllParentsSelection(child);
+      });
+
+      // console.log(descendants);
+      // console.log(this.dataSource);
+      console.log(this.article);
+      // console.log(this.checklistSelection);
+    });
   }
 }
