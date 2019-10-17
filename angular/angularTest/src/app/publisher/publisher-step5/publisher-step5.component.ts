@@ -33,7 +33,7 @@ interface ExampleFlatNode {
 export class PublisherStep5Component implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private articleCategoryService: ArticleCategoryService) {
+              private articleCategoryService: ArticleCategoryService) {
   }
   public articleCategoryObservable$: Observable<ArticleCategory[]>;
   public articleCategories: ArticleCategory[];
