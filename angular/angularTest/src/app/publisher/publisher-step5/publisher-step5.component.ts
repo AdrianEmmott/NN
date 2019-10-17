@@ -43,7 +43,7 @@ export class PublisherStep5Component implements OnInit {
     return {
       expandable: !!node.categories && node.categories.length > 0,
       title: node.title,
-      id: node.id, 
+      id: node.id,
       selected: node.selected,
       level
     };
