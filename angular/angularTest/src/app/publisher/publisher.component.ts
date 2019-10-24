@@ -54,6 +54,7 @@ export class PublisherComponent implements OnInit {
     // console.log(event);
     this.getArticleDataFromStep1();
     this.getArticleDataFromStep2();
+    this.getArticleDataFromStep5();
   }
 
   getArticleDataFromStep1() {
@@ -66,7 +67,13 @@ export class PublisherComponent implements OnInit {
     this.article.content = this.step2Component.article.content;
   }
 
+  getArticleDataFromStep5() {
+    this.article.tags = this.step2Component.article.tags;
+  }
+
   updateArticleClick() {
+    // this.article.tags = null;
+    console.log(this.article);
     this.articlePublisherService.updateArticle(this.article);
   }
 }

@@ -9,7 +9,7 @@ export class Article {
     content: string;
     author: string;
     publishDate: Date;
-    tags: number[];
+    tags: Array<number>;
   }
 
 export class ArticleSummary {

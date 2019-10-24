@@ -12,6 +12,7 @@ export class ArticlePublisherService {
   constructor(private httpClient: HttpClient) { }
 
   public updateArticle(article: Article) {
+    // public updateArticle(article: Array<number>) {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
 

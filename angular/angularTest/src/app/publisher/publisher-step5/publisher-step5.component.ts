@@ -33,7 +33,7 @@ interface ExampleFlatNode {
 export class PublisherStep5Component implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private articleCategoryService: ArticleCategoryService) {
+    private articleCategoryService: ArticleCategoryService) {
   }
   public articleCategoryObservable$: Observable<ArticleCategory[]>;
   public articleCategories: ArticleCategory[];
@@ -140,7 +140,6 @@ export class PublisherStep5Component implements OnInit {
   todoItemSelectionToggle(node: ExampleFlatNode): void {
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
-    console.log(descendants);
 
     this.checklistSelection.isSelected(node)
       ? this.checklistSelection.select(...descendants)
@@ -176,16 +175,26 @@ export class PublisherStep5Component implements OnInit {
 
   setArticleTags(node: ExampleFlatNode): void {
     if (this.checklistSelection.isSelected(node)) {
-      if (!this.article.tags.includes(node.id)) {
+      if (this.article.tags != null) {
+        if (!this.article.tags.includes(node.id)) {
+          this.article.tags.push(node.id);
+        }
+      } else {
+        console.log('in there');
+        this.article.tags = new Array<number>();
         this.article.tags.push(node.id);
       }
     } else {
-      if (this.article.tags.includes(node.id)) {
-        this.article.tags.splice(this.article.tags.indexOf(node.id), 1);
+      if (this.article.tags != null) {
+        if (this.article.tags.includes(node.id)) {
+          this.article.tags.splice(this.article.tags.indexOf(node.id), 1);
+        }
       }
     }
 
-    this.article.tags.sort();
+    if (this.article.tags != null) {
+      this.article.tags.sort();
+    }
     console.log(this.article.tags);
   }
 
@@ -201,15 +210,17 @@ export class PublisherStep5Component implements OnInit {
       // set tags selected in tags data source based on tag ids in article
       // TODO make recursive
       this.articleCategories.forEach(tag => {
-        tag.selected = this.article.tags.includes(tag.id);
+        if (this.article.tags != null) {
+          tag.selected = this.article.tags.includes(tag.id);
 
-        tag.categories.forEach(childTag => {
-          if (tag.selected) {
-            childTag.selected = true;
-          } else {
-            childTag.selected = this.article.tags.includes(childTag.id);
-          }
-        });
+          tag.categories.forEach(childTag => {
+            if (tag.selected) {
+              childTag.selected = true;
+            } else {
+              childTag.selected = this.article.tags.includes(childTag.id);
+            }
+          });
+        }
       });
 
       // set treeview dataSource

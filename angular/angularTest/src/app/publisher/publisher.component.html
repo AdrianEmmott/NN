@@ -26,14 +26,14 @@
     <mat-step label="Basic info" state="phone">
       <app-publisher-step1 [article]="article"></app-publisher-step1>
       <div>
-        <button (click)="getArticleDataFromStep1()" mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Content" state="chat">
       <app-publisher-step2 [article]="article"></app-publisher-step2>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button (click)="getArticleDataFromStep2()" mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Attachments">

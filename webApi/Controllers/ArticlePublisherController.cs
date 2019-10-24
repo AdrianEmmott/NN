@@ -19,14 +19,13 @@ namespace webApi.Controllers
         private readonly IArticlePublisherService _articlePublisherService;
 
         public ArticlePublisherController(IArticlePublisherService articlePublisherService)
-        {
-            _articlePublisherService = articlePublisherService;
-        }
+             => _articlePublisherService = articlePublisherService;
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] ArticlePublisherModel model)
+        public void Post(ArticlePublisherModel model)
         {
+            //var model = new ArticlePublisherModel();
             _articlePublisherService.UpdateArticle(model);
         }
 

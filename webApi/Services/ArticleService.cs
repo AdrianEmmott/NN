@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,11 +49,28 @@ namespace webApi.Services
             {
                 string json = r.ReadToEnd();
 
+                // dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+                // JArray articlesArray = (JArray)jsonObj;
+                // var articleJToken = articlesArray.FirstOrDefault(x => x["id"].Value<int>() == id).FirstOrDefault();
+                    
+                // ArticleModel model = new ArticleModel();
+
+                // model.Id = articleJToken.Parent.Value<int>("id");
+                // model.Title = articleJToken.Parent.Value<string>("title");
+                // model.SubTitle = articleJToken.Parent.Value<string>("subTitle");
+                // model.Summary = articleJToken.Parent.Value<string>("summary");
+                // model.HeaderImage = articleJToken.Parent.Value<string>("headerImage");
+                // model.Content = articleJToken.Parent.Value<string>("content");
+                // model.Author = articleJToken.Parent.Value<string>("author");
+                // model.PublishDate = articleJToken.Parent.Value<DateTime>("publishDate");
+                // model.Views = articleJToken.Parent.Value<int>("views");
+                // model.Tags =  articleJToken.Parent.Value<JArray>("tags").ToObject<List<int>>();
+
                 var model =
                     JsonConvert.DeserializeObject<List<ArticleModel>>(json)
                     .Where(x => x.Id == id).FirstOrDefault();
 
-                if (model != null)
+                if (model != null && model.Id > 0)
                 {
                     UpdateViewCount(id);
                 }
