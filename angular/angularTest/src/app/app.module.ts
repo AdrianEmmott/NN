@@ -29,16 +29,12 @@ import { BannerComponent } from './banner/banner.component';
 import { MainComponent } from './main/main.component';
 import { HighlightNewsComponent } from './highlight-news/highlight-news.component';
 import { HighlightBlogComponent } from './highlight-blog/highlight-blog.component';
-import { MessagePageComponent } from './message-page/message-page.component';
+import { ArticleBodyComponent } from './article/article-body/article-body.component';
 import { HomeComponent } from './home/home.component';
-import { MessagePageArticleRightComponent } from './message-page-article-right/message-page-article-right.component';
-import { MessagePageArticleLeftComponent } from './message-page-article-left/message-page-article-left.component';
-import { MessagePageSidebarLeftComponent } from './message-page-sidebar-left/message-page-sidebar-left.component';
-import { MessagePageSidebarRightComponent } from './message-page-sidebar-right/message-page-sidebar-right.component';
-import { MessagePageArticleComponent } from './message-page-article/message-page-article.component';
-import { ArticleSidebarComponent } from './article-sidebar/article-sidebar.component';
+import { ArticleSidebarComponent } from './article/article-sidebar/article-sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublisherStep5Component } from './publisher/publisher-step5/publisher-step5.component';
+import { ArticleComponent } from './article/article.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -58,15 +54,11 @@ import { PublisherStep5Component } from './publisher/publisher-step5/publisher-s
     MainComponent,
     HighlightNewsComponent,
     HighlightBlogComponent,
-    MessagePageComponent,
     HomeComponent,
-    MessagePageArticleRightComponent,
-    MessagePageArticleLeftComponent,
-    MessagePageSidebarLeftComponent,
-    MessagePageSidebarRightComponent,
-    MessagePageArticleComponent,
+    PublisherStep5Component,
+    ArticleComponent,
     ArticleSidebarComponent,
-    PublisherStep5Component
+    ArticleBodyComponent
   ],
   imports: [
     BrowserModule,

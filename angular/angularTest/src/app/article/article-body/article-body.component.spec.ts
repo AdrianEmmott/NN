@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessagePageArticleComponent } from './message-page-article.component';
+import { ArticleBodyComponent } from './article-body.component';
 
-describe('MessagePageArticleComponent', () => {
-  let component: MessagePageArticleComponent;
-  let fixture: ComponentFixture<MessagePageArticleComponent>;
+describe('ArticleBodyComponent', () => {
+  let component: ArticleBodyComponent;
+  let fixture: ComponentFixture<ArticleBodyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessagePageArticleComponent ]
+      declarations: [ ArticleBodyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MessagePageArticleComponent);
+    fixture = TestBed.createComponent(ArticleBodyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

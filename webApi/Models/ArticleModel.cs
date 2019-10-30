@@ -34,7 +34,7 @@ namespace webApi.Models
         [JsonProperty("views")]
         public int Views { get; set; }
 
-        [JsonProperty("tags")]
-        public List<int> Tags { get; set; }
+        [JsonProperty("tagIds")]
+        public List<int> TagIds { get; set; }
     }
 }

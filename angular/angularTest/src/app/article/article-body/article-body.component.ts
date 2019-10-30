@@ -3,15 +3,15 @@ import { ArticleService } from 'src/app/article.service';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Article } from '../article.models';
+import { Article } from '../../article.models';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-message-page-article',
-  templateUrl: './message-page-article.component.html',
-  styleUrls: ['./message-page-article.component.scss']
+  selector: 'app-article-body',
+  templateUrl: './article-body.component.html',
+  styleUrls: ['./article-body.component.scss']
 })
-export class MessagePageArticleComponent implements OnInit {
+export class ArticleBodyComponent implements OnInit {
   constructor(private articleService: ArticleService,
               private route: ActivatedRoute,
               private router: Router,

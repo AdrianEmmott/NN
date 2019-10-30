@@ -37,7 +37,7 @@ namespace webApi
 
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IArticlePublisherService, ArticlePublisherService>();
-            services.AddScoped<IArticleCategoryService, ArticleCategoryService>();
+            services.AddScoped<ITagService, TagService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

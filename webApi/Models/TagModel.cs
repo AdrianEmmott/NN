@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace webApi.Models
 {
-    public class ArticleCategoryModel
+    public class TagModel
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -12,7 +12,7 @@ namespace webApi.Models
         [JsonProperty("title")]
         public string Title { get; set; }
 
-        [JsonProperty("categories")]
-        public List<ArticleCategoryModel> Categories { get; set; }
+        [JsonProperty("tags")]
+        public List<TagModel> Tags { get; set; }
     }
 }

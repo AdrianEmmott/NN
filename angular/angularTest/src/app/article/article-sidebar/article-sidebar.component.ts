@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleSummary } from '../article.models';
-import { ArticleService } from '../article.service';
+import { ArticleSummary } from '../../article.models';
+import { ArticleService } from '../../article.service';
 
 @Component({
   selector: 'app-article-sidebar',

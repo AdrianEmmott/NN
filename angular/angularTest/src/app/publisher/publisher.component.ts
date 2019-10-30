@@ -4,7 +4,8 @@ import { PublisherStep1Component } from 'src/app/publisher/publisher-step1/publi
 import { PublisherStep2Component } from 'src/app/publisher/publisher-step2/publisher-step2.component';
 import { ArticlePublisherService } from 'src/app/article.publisher.service';
 import { ArticleService } from 'src/app/article.service';
-import { Article } from '../article.models';
+import { TagService } from 'src/app/tag.service';
+import { Article, ArticleTagModel } from '../article.models';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -24,14 +25,36 @@ export class PublisherComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
               private route: ActivatedRoute,
-              private articlePublisherService: ArticlePublisherService) { }
+              private articlePublisherService: ArticlePublisherService,
+              private tagService: TagService) { }
 
   public articleObservable$: Observable<Article>;
+  public articleTagsObservable$: Observable<ArticleTagModel>;
 
   private article: Article;
+  private articleTags: ArticleTagModel;
 
   ngOnInit() {
+    this.getArticleTags();
     this.getArticle();
+
+    this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {
+      this.articleTags = articleTags;
+      // console.log(3);
+
+      this.articleObservable$.subscribe((article: Article) => {
+        this.article = article;
+        // console.log(4);
+
+        if (this.article != null) {
+          console.log(this.articleTags);
+          this.article.tagIds = this.articleTags.tagIds;
+          // console.log(5);
+        } else {
+          console.log(6);
+        }
+      });
+    });
   }
 
   getArticle() {
@@ -39,10 +62,15 @@ export class PublisherComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.articleService.getArticle(+params.get('id')))
     );
+    // console.log(1);
+  }
 
-    this.articleObservable$.subscribe((article: Article) => {
-      this.article = article;
-    });
+  getArticleTags() {
+    this.articleTagsObservable$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.tagService.getTagsByArticleId(+params.get('id')))
+    );
+    // console.log(2);
   }
 
   showStep2(step1Complete: boolean) {
@@ -68,7 +96,7 @@ export class PublisherComponent implements OnInit {
   }
 
   getArticleDataFromStep5() {
-    this.article.tags = this.step2Component.article.tags;
+    this.article.tagIds = this.step2Component.article.tagIds;
   }
 
   updateArticleClick() {

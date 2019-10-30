@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArticleCategoryService } from 'src/app/article.category.service';
-import { Article, ArticleCategory } from '../../article.models';
+import { TagService } from 'src/app/tag.service';
+import { Article, TagModel } from '../../article.models';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 interface INode {
   id: number;
   title: string;
-  categories?: INode[];
+  tags?: INode[];
   selected: boolean;
 }
 
@@ -33,15 +33,15 @@ interface ExampleFlatNode {
 export class PublisherStep5Component implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private articleCategoryService: ArticleCategoryService) {
+              private tagService: TagService) {
   }
-  public articleCategoryObservable$: Observable<ArticleCategory[]>;
-  public articleCategories: ArticleCategory[];
+  public tagObservable$: Observable<Array<TagModel>>;
+  public allTags: Array<TagModel>;
   @Input() article: Article;
 
   transformer = (node: INode, level: number) => {
     return {
-      expandable: !!node.categories && node.categories.length > 0,
+      expandable: !!node.tags && node.tags.length > 0,
       title: node.title,
       id: node.id,
       selected: node.selected,
@@ -56,7 +56,7 @@ export class PublisherStep5Component implements OnInit {
   // tslint:disable-next-line: member-ordering
   treeFlattener = new MatTreeFlattener(
     this.transformer, node => node.level,
-    node => node.expandable, node => node.categories);
+    node => node.expandable, node => node.tags);
 
   // tslint:disable-next-line: member-ordering
   dataSource = new MatTreeFlatDataSource(this.treeControl,
@@ -66,7 +66,6 @@ export class PublisherStep5Component implements OnInit {
   dataChange = new BehaviorSubject<ExampleFlatNode[]>([]);
 
   getLevel = (node: ExampleFlatNode) => node.level;
-
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
@@ -169,62 +168,50 @@ export class PublisherStep5Component implements OnInit {
   }
 
   ngOnInit() {
-    this.getArticleCategories();
+    console.log(this.article);
+    this.getArticleTags();
   }
 
 
   setArticleTags(node: ExampleFlatNode): void {
     if (this.checklistSelection.isSelected(node)) {
-      if (this.article.tags != null) {
-        if (!this.article.tags.includes(node.id)) {
-          this.article.tags.push(node.id);
+      if (this.article.tagIds != null) {
+        if (!this.article.tagIds.includes(node.id)) {
+          this.article.tagIds.push(node.id);
         }
       } else {
-        console.log('in there');
-        this.article.tags = new Array<number>();
-        this.article.tags.push(node.id);
+        // console.log('in there');
+        this.article.tagIds = new Array<number>();
+        this.article.tagIds.push(node.id);
       }
     } else {
-      if (this.article.tags != null) {
-        if (this.article.tags.includes(node.id)) {
-          this.article.tags.splice(this.article.tags.indexOf(node.id), 1);
+      if (this.article.tagIds != null) {
+        if (this.article.tagIds.includes(node.id)) {
+          this.article.tagIds.splice(this.article.tagIds.indexOf(node.id), 1);
         }
       }
     }
 
-    if (this.article.tags != null) {
-      this.article.tags.sort();
+    if (this.article.tagIds != null) {
+      this.article.tagIds.sort();
     }
-    console.log(this.article.tags);
+    // console.log(this.article.tags);
   }
 
-  getArticleCategories() {
-    this.articleCategoryObservable$ = this.route.paramMap.pipe(
+  getArticleTags() {
+    this.tagObservable$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.articleCategoryService.getArticleCategories(+params.get('id')))
+        this.tagService.getTags())
     );
 
-    this.articleCategoryObservable$.subscribe((articleCategories: ArticleCategory[]) => {
-      this.articleCategories = articleCategories;
+    this.tagObservable$.subscribe((allTags: TagModel[]) => {
+      this.allTags = allTags;
 
       // set tags selected in tags data source based on tag ids in article
-      // TODO make recursive
-      this.articleCategories.forEach(tag => {
-        if (this.article.tags != null) {
-          tag.selected = this.article.tags.includes(tag.id);
-
-          tag.categories.forEach(childTag => {
-            if (tag.selected) {
-              childTag.selected = true;
-            } else {
-              childTag.selected = this.article.tags.includes(childTag.id);
-            }
-          });
-        }
-      });
+      this.allTagsSetSelected();
 
       // set treeview dataSource
-      this.dataSource.data = this.articleCategories;
+      this.dataSource.data = this.allTags;
 
       // Set the tree node data source checked state
       const descendants = this.treeControl.dataNodes;
@@ -242,5 +229,26 @@ export class PublisherStep5Component implements OnInit {
       // console.log(this.article);
       // console.log(this.checklistSelection);
     });
+  }
+
+  allTagsSetSelected(): void {
+    this.allTags.forEach(tag => {
+      if (this.article.tagIds != null) {
+        tag.selected = this.article.tagIds.includes(tag.id);
+
+        // RECURSIVE
+        this.allTagsSetSelectedInner(tag.tags);
+      }
+    });
+  }
+
+  allTagsSetSelectedInner(tags: Array<TagModel>): void {
+    if (tags != null) {
+      tags.forEach(tag => {
+        tag.selected = this.article.tagIds.includes(tag.id);
+
+        this.allTagsSetSelectedInner(tag.tags);
+      });
+    }
   }
 }

@@ -9,7 +9,7 @@ export class Article {
     content: string;
     author: string;
     publishDate: Date;
-    tags: Array<number>;
+    tagIds: Array<number>;
   }
 
 export class ArticleSummary {
@@ -21,11 +21,17 @@ export class ArticleSummary {
     publishDate: Date;
   }
 
-export class ArticleCategory {
+export class TagModel {
     id: number;
     title: string;
-    categories?: ArticleCategory[];
+    tags?: Array<TagModel>;
     expandable: boolean;
     selected: boolean;
     level: number;
   }
+
+export class ArticleTagModel {
+  articleId: number;
+  tagIds: Array<number>;
+  tags: Array<TagModel>;
+}
