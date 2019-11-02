@@ -1,5 +1,6 @@
-<section class="col-8 col-12-medium imp-medium">
-    <app-article-body></app-article-body>
+<section class="col-8 col-12-medium imp-medium" *ngIf="article">
+    <app-article-body [article]="article"></app-article-body>
+    <app-article-metadata [article]="article"></app-article-metadata>
 </section>
 <section class="col-4 col-12-medium">
     <app-article-sidebar></app-article-sidebar>

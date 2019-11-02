@@ -40,18 +40,13 @@ export class PublisherComponent implements OnInit {
 
     this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {
       this.articleTags = articleTags;
-      // console.log(3);
 
       this.articleObservable$.subscribe((article: Article) => {
         this.article = article;
-        // console.log(4);
 
         if (this.article != null) {
           console.log(this.articleTags);
           this.article.tagIds = this.articleTags.tagIds;
-          // console.log(5);
-        } else {
-          console.log(6);
         }
       });
     });
@@ -62,7 +57,6 @@ export class PublisherComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.articleService.getArticle(+params.get('id')))
     );
-    // console.log(1);
   }
 
   getArticleTags() {
@@ -70,7 +64,6 @@ export class PublisherComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.tagService.getTagsByArticleId(+params.get('id')))
     );
-    // console.log(2);
   }
 
   showStep2(step1Complete: boolean) {
@@ -79,7 +72,6 @@ export class PublisherComponent implements OnInit {
   }
 
   getArticleData(event: any) {
-    // console.log(event);
     this.getArticleDataFromStep1();
     this.getArticleDataFromStep2();
     this.getArticleDataFromStep5();
@@ -100,8 +92,11 @@ export class PublisherComponent implements OnInit {
   }
 
   updateArticleClick() {
-    // this.article.tags = null;
     console.log(this.article);
+    const articleTags = new ArticleTagModel();
+    articleTags.articleId = this.article.id;
+    articleTags.tagIds = this.article.tagIds;
+    this.tagService.updateArticleTags(articleTags);
     this.articlePublisherService.updateArticle(this.article);
   }
 }

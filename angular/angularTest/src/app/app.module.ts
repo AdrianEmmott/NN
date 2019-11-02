@@ -35,6 +35,8 @@ import { ArticleSidebarComponent } from './article/article-sidebar/article-sideb
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PublisherStep5Component } from './publisher/publisher-step5/publisher-step5.component';
 import { ArticleComponent } from './article/article.component';
+import { ArticleMetadataComponent } from './article/article-metadata/article-metadata.component';
+import { LanderComponent } from './lander/lander.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -58,7 +60,9 @@ import { ArticleComponent } from './article/article.component';
     PublisherStep5Component,
     ArticleComponent,
     ArticleSidebarComponent,
-    ArticleBodyComponent
+    ArticleBodyComponent,
+    ArticleMetadataComponent,
+    LanderComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,9 @@ import { ArticleComponent } from './article/article.component';
     MatProgressSpinnerModule,
     MatTreeModule,
     MatCheckboxModule
+  ],
+  entryComponents: [
+    LanderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

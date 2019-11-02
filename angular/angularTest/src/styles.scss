@@ -23,6 +23,14 @@
 		small:   ( null,    736px  )
 	));
 
+	.clearfix {
+		&:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+	  }
+
 // Reset.
 // Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
 

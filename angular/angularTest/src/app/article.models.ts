@@ -24,6 +24,7 @@ export class ArticleSummary {
 export class TagModel {
     id: number;
     title: string;
+    path: string;
     tags?: Array<TagModel>;
     expandable: boolean;
     selected: boolean;

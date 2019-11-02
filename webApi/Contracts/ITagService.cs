@@ -8,5 +8,7 @@ namespace webApi.Contracts
         List<TagModel> GetAllTags();
 
         ArticleTagModel GetTagsByArticleId(int articleId);
+
+        void UpdateArticleTags(ArticleTagModel model);
     }
 }

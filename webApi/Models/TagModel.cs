@@ -12,6 +12,15 @@ namespace webApi.Models
         [JsonProperty("title")]
         public string Title { get; set; }
 
+        [JsonProperty("path")]
+        public string Path
+        {
+            get
+            {
+                return this.Title.ToLower().Replace(" ","-");
+            }
+        }
+
         [JsonProperty("tags")]
         public List<TagModel> Tags { get; set; }
     }

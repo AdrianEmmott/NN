@@ -22,4 +22,16 @@ export class TagService {
       .get<ArticleTagModel>('https://localhost:8080/api/tags/article/' + id);
     return articleTags;
   }
+
+  public updateArticleTags(articleTags: ArticleTagModel) {
+    const myHeaders = new HttpHeaders();
+    myHeaders.set('Content-Type', 'application/json');
+
+    console.log(articleTags);
+
+    this.httpClient.post('https://localhost:8080/api/tags/article/update'
+      , articleTags
+      , { headers: myHeaders })
+      .subscribe();
+  }
 }

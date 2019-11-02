@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using webApi.Contracts;
 using webApi.Models;
 
@@ -45,7 +46,6 @@ namespace webApi.Services
                     JsonConvert.DeserializeObject<List<ArticleTagModel>>(json)
                     .Where(x => x.ArticleId == articleId).FirstOrDefault();
 
-
                 foreach (var tagId in articleTags.TagIds)
                 {
                     var tag = FindTagById(allTags, tagId);
@@ -55,7 +55,6 @@ namespace webApi.Services
                     }
                 }
 
-
                 articleTags.Tags.ForEach(x => x.Tags = null);
                 articleTags.TagIds = articleTags.TagIds.OrderBy(x => x).ToList();
                 articleTags.Tags = articleTags.Tags.OrderBy(x => x.Id).ToList();
@@ -64,7 +63,31 @@ namespace webApi.Services
             }
         }
 
+        public void UpdateArticleTags(ArticleTagModel model)
+        {
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            serializerSettings.Formatting = Formatting.Indented;
 
+            string json = File.ReadAllText(ArticleTagsPath);
+
+            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json, serializerSettings);
+
+            JArray articleTags = (JArray)jsonObj;
+
+            var newjToken = JToken.FromObject(model);
+            
+            articleTags
+                .Where(x => x["articleId"].Value<int>() == model.ArticleId)
+                .FirstOrDefault().Replace(newjToken);
+
+            jsonObj = articleTags;
+
+            string output = Newtonsoft.Json.JsonConvert
+                    .SerializeObject(jsonObj, serializerSettings.Formatting, serializerSettings);
+
+            File.WriteAllText(ArticleTagsPath, output);
+        }
 
         public TagModel FindTagById(List<TagModel> tags, int tagId)
         {
@@ -105,20 +128,6 @@ namespace webApi.Services
             }
 
             return model;
-        }
-    }
-
-    public static class TreeFlattener
-    {
-        public static IEnumerable<T> Flatten<T>(this IEnumerable<T> e, Func<T, IEnumerable<T>> f)
-        {
-            if (e == null)
-            {
-                return Enumerable.Empty<T>();
-            }
-
-            return e.SelectMany(c => f(c).Flatten(f)).Concat(e);
-            // return e.SelectMany(c => f(c).Flatten(f)).;
         }
     }
 }

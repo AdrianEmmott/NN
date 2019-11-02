@@ -1,32 +1,6 @@
 <nav id="nav">
   <ul>
-    <li [ngClass]="{'current': router.url === '/'}"><a [routerLink]="'/'">Home</a></li>
-    <li [ngClass]="{'current': router.url == '/articles/1'}"><a [routerLink]="'articles/1'">Sales</a></li>
-    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-    <li><a href="no-sidebar.html">No Sidebar</a></li>
-    <li [ngClass]="{'current': router.url === '/publisher/article'}"><a [routerLink]="'publisher/article'">Publisher step
-        1</a></li>
-    <li [ngClass]="{'current': router.url === '/publisher/step2'}"><a [routerLink]="'publisher/step2'">Publisher step
-        2</a></li>
-    <li><a (click)="clickExample()">Click me</a></li>
-    <li>
-        <a href="#">Dropdown</a>
-        <ul>
-          <li><a href="#">Lorem ipsum dolor</a></li>
-          <li><a href="#">Magna phasellus</a></li>
-          <li><a href="#">Etiam dolore nisl</a></li>
-          <li>
-            <a href="#">Phasellus consequat</a>
-            <ul>
-              <li><a href="#">Magna phasellus</a></li>
-              <li><a href="#">Etiam dolore nisl</a></li>
-              <li><a href="#">Veroeros feugiat</a></li>
-              <li><a href="#">Nisl sed aliquam</a></li>
-              <li><a href="#">Dolore adipiscing</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Veroeros feugiat</a></li>
-        </ul>
-      </li>
+    <li routerLinkActive="current"><a [routerLink]="'/'">Home</a></li>
+    <li routerLinkActive="current" *ngFor="let tag of tags"><a [routerLink]="tag.path">{{ tag.title }}</a></li>
   </ul>
 </nav>

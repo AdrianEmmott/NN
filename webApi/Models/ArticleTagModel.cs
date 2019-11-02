@@ -13,7 +13,7 @@ namespace webApi.Models
             Tags = new List<TagModel>();
         }
 
-        [JsonProperty("id")]
+        [JsonProperty("articleId")]
         public int ArticleId { get; set; }
 
         [JsonProperty("tagIds")]

@@ -36,5 +36,12 @@ namespace webApi.Controllers
              var model = _tagService.GetTagsByArticleId(id);
              return Ok(model); 
         }
+
+        [HttpPost("article/update")]
+        public ActionResult UpdateTagsByArticleId(ArticleTagModel model) 
+        {
+            _tagService.UpdateArticleTags(model);
+            return Ok();
+        }
     }
 }
