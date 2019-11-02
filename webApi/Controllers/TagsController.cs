@@ -23,7 +23,14 @@ namespace webApi.Controllers
             _tagService = tagService;
         }
 
-        [HttpGet("all")]
+        [HttpGet("all/flattened")]
+        public ActionResult GetAllTagsFlattened()
+        {
+            var model = _tagService.GetFlattenedTags(null);
+            return Ok(model);
+        }
+
+        [HttpGet("all/tree")]
         public ActionResult GetAllTags()
         {
              var model = _tagService.GetAllTags();

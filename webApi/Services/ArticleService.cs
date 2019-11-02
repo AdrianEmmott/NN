@@ -14,9 +14,11 @@ namespace webApi.Services
     {
         private const string Path = "Data/articles.json";
 
-        public ArticleService()
-        {
+        private readonly ITagService _tagService;
 
+        public ArticleService(ITagService tagService)
+        {
+            _tagService = tagService;
         }
 
         public List<ArticleModel> GetArticles()
@@ -43,6 +45,39 @@ namespace webApi.Services
             }
         }
 
+        public List<ArticleModelSummary> GetArticlesSummaryByTagPath(string tagPath)
+        {
+            if (!tagPath.StartsWith('/'))
+            {
+                tagPath = "/" + tagPath;
+            }
+            var flattenedTags = _tagService.GetFlattenedTags(null);
+
+            if (!flattenedTags.Any(x => x.Path == tagPath))
+            {
+                return null;
+            }
+
+            List<ArticleModelSummary> returnModel = new List<ArticleModelSummary>();
+            var summaryModel = GetArticlesSummary();
+
+            var tag = flattenedTags.Where(x => x.Path == tagPath).FirstOrDefault();
+
+            if (tag != null)
+            {
+                foreach (var articleSummary in summaryModel)
+                {
+                    ArticleTagModel articleTags = _tagService.GetTagsByArticleId(articleSummary.Id);
+
+                    if (articleTags.Tags.Any(x => x.Path == tag.Path))
+                    {
+                        returnModel.Add(articleSummary);
+                    }
+                }
+            }
+            return returnModel;
+        }
+
         public ArticleModel GetArticle(int id)
         {
             using (StreamReader r = new StreamReader(Path))
@@ -52,7 +87,7 @@ namespace webApi.Services
                 // dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
                 // JArray articlesArray = (JArray)jsonObj;
                 // var articleJToken = articlesArray.FirstOrDefault(x => x["id"].Value<int>() == id).FirstOrDefault();
-                    
+
                 // ArticleModel model = new ArticleModel();
 
                 // model.Id = articleJToken.Parent.Value<int>("id");

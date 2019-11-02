@@ -1,6 +1,7 @@
-<nav id="nav">
+<nav id="nav" *ngIf="tags != null && tags.length > 0">
   <ul>
-    <li routerLinkActive="current"><a [routerLink]="'/'">Home</a></li>
-    <li routerLinkActive="current" *ngFor="let tag of tags"><a [routerLink]="tag.path">{{ tag.title }}</a></li>
+    <li routerLinkActive="current" [routerLinkActiveOptions]="{exact:
+      true}"><a [routerLink]="'/'">Home</a></li>
+    <li routerLinkActive="current" *ngFor="let tag of navTags"><a [routerLink]="tag.path">{{ tag.title }}</a></li>
   </ul>
 </nav>

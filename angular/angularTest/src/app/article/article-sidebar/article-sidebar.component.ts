@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleSummary } from '../../article.models';
 import { ArticleService } from '../../article.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-article-sidebar',
@@ -12,6 +13,9 @@ export class ArticleSidebarComponent implements OnInit {
   constructor(private articleService: ArticleService) { }
 
   private articleSummary: ArticleSummary;
+
+  private articleSummaryByTagPath$: Observable<ArticleSummary>;
+  private articleSummaryByTagPath: ArticleSummary;
 
   ngOnInit() {
     this.getArticlesSummary();

@@ -13,7 +13,13 @@ export class TagService {
 
   public getTags(): Observable<TagModel[]> {
     const article = this.httpClient
-      .get<TagModel[]>('https://localhost:8080/api/tags/all');
+      .get<TagModel[]>('https://localhost:8080/api/tags/all/tree');
+    return article;
+  }
+
+  public getTagsFlattened(): Observable<TagModel[]> {
+    const article = this.httpClient
+      .get<TagModel[]>('https://localhost:8080/api/tags/all/flattened');
     return article;
   }
 

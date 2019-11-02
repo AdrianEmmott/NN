@@ -5,6 +5,7 @@ import { TagModel } from '../article.models';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { LanderComponent } from '../lander/lander.component';
+import { ArticleComponent } from '../article/article.component';
 
 @Component({
   selector: 'app-nav',
@@ -19,24 +20,32 @@ export class NavComponent implements OnInit {
 
   public tagObservable$: Observable<Array<TagModel>>;
   public tags: Array<TagModel>;
+  public navTags: Array<TagModel>;
 
   ngOnInit() {
     this.getTags();
   }
 
   getTags() {
-    this.tagObservable$ = this.tagService.getTags();
+    this.tagObservable$ = this.tagService.getTagsFlattened();
 
     this.tagObservable$.subscribe((tags: Array<TagModel>) => {
       this.tags = tags;
 
+      this.navTags = new Array<TagModel>();
+
       this.tags.forEach(tag => {
         this.router.config.unshift(
-          { path: tag.path, component: LanderComponent, pathMatch: 'full' }
+          { path: tag.path.substring(1), component: LanderComponent, pathMatch: 'full', data: { tagId: tag.id } }
+          , { path: tag.path.substring(1) + '/articles/:id', component: ArticleComponent, pathMatch: 'full' }
         );
+
+        if (tag.showInNav) {
+          this.navTags.push(tag);
+        }
       });
 
-      console.log(this.router);
+      // console.log(this.router);
     });
   }
 }

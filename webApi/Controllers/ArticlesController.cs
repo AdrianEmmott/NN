@@ -45,6 +45,13 @@ namespace webApi.Controllers
              return Ok(model); 
         }
 
+        [HttpGet("summary/tagpath")]
+        public ActionResult GetArticlesSummaryByTagPath(string path)
+        {
+            var model = _articleService.GetArticlesSummaryByTagPath(path);
+            return Ok(model);
+        }
+
 
         // POST api/values
         [HttpPost]

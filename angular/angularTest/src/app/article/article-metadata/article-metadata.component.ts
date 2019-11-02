@@ -13,14 +13,14 @@ import { switchMap } from 'rxjs/operators';
 export class ArticleMetadataComponent implements OnInit {
   @Input() article: Article;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private tagService: TagService) { }
 
   public articleTagsObservable$: Observable<ArticleTagModel>;
   public articleTags: ArticleTagModel;
 
   ngOnInit() {
-    console.log(this.article);
     this.getArticleTags();
   }
 
@@ -32,7 +32,6 @@ export class ArticleMetadataComponent implements OnInit {
 
     this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {
       this.articleTags = articleTags;
-      console.log(this.articleTags);
     });
   }
 }

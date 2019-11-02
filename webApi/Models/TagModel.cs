@@ -12,14 +12,14 @@ namespace webApi.Models
         [JsonProperty("title")]
         public string Title { get; set; }
 
+        [JsonProperty("showInNav")]
+        public bool ShowInNav { get; set; }
+
+        [JsonProperty("sortOrder")]
+        public int SortOrder { get; set; }
+
         [JsonProperty("path")]
-        public string Path
-        {
-            get
-            {
-                return this.Title.ToLower().Replace(" ","-");
-            }
-        }
+        public string Path { get; set; }
 
         [JsonProperty("tags")]
         public List<TagModel> Tags { get; set; }

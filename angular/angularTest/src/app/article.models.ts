@@ -24,6 +24,8 @@ export class ArticleSummary {
 export class TagModel {
     id: number;
     title: string;
+    showInNav: boolean;
+    sortOrder: number;
     path: string;
     tags?: Array<TagModel>;
     expandable: boolean;

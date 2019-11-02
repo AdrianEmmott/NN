@@ -3,7 +3,7 @@ using webApi.Models;
 
 namespace webApi.Contracts
 {
-    public interface IArticlePublisherService : IArticleService
+    public interface IArticlePublisherService
     {
         void CreateArticle(ArticlePublisherModel model);
         void UpdateArticle(ArticlePublisherModel model);

@@ -6,8 +6,8 @@ import { ArticleComponent } from 'src/app/article/article.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full', outlet: 'outlet-home'},
-  {path: 'publisher/article/:id', component: PublisherComponent},
-  {path: 'articles/:id', component: ArticleComponent, pathMatch: 'full'}
+  {path: 'publisher/article/:id', component: PublisherComponent}
+  , {path: 'articles/:id', component: ArticleComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

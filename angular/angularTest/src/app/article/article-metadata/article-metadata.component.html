@@ -7,8 +7,8 @@
         </p>
         <section class="tags clearfix" *ngIf="articleTags != null">
             <p class="title">Filed under:</p>
-            <a class="tag" href="#" *ngFor="let tag of articleTags.tags">
-                {{ tag.title }}
+            <a class="tag" [routerLink]="tag.path" *ngFor="let tag of articleTags.tags">
+                {{ tag.path }}
             </a>
         </section>
     </section>

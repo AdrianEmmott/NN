@@ -1,1 +1,6 @@
 <p>lander works! {{ router.url }}</p>
+<section *ngIf="articleSummaryByTagPath">
+    <p *ngFor="let article of articleSummaryByTagPath">
+        <a [routerLink]="[router.url + '/articles', article.id]">{{ article.title }}</a>
+    </p>
+</section>

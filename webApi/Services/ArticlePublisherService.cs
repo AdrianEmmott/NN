@@ -10,14 +10,11 @@ using webApi.Models;
 
 namespace webApi.Services
 {
-    public class ArticlePublisherService : ArticleService, IArticlePublisherService
+    public class ArticlePublisherService : IArticlePublisherService
     {
         private const string Path = "Data/articles.json";
 
-        public ArticlePublisherService()
-        {
-
-        }
+        public ArticlePublisherService() { }
 
         public void CreateArticle(ArticlePublisherModel model)
         {
