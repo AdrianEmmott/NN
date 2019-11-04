@@ -33,19 +33,19 @@ namespace webApi.Services
             }
         }
 
-        public List<ArticleModelSummary> GetArticlesSummary()
+        public List<ArticleSummaryModel> GetArticlesSummary()
         {
             using (StreamReader r = new StreamReader(Path))
             {
                 string json = r.ReadToEnd();
 
-                List<ArticleModelSummary> items =
-                    JsonConvert.DeserializeObject<List<ArticleModelSummary>>(json);
+                List<ArticleSummaryModel> items =
+                    JsonConvert.DeserializeObject<List<ArticleSummaryModel>>(json);
                 return items;
             }
         }
 
-        public List<ArticleModelSummary> GetArticlesSummaryByTagPath(string tagPath)
+        public List<ArticleSummaryModel> GetArticlesSummaryByTagPath(string tagPath)
         {
             if (!tagPath.StartsWith('/'))
             {
@@ -58,7 +58,7 @@ namespace webApi.Services
                 return null;
             }
 
-            List<ArticleModelSummary> returnModel = new List<ArticleModelSummary>();
+            List<ArticleSummaryModel> returnModel = new List<ArticleSummaryModel>();
             var summaryModel = GetArticlesSummary();
 
             var tag = flattenedTags.Where(x => x.Path == tagPath).FirstOrDefault();
@@ -75,7 +75,7 @@ namespace webApi.Services
                     }
                 }
             }
-            return returnModel;
+            return returnModel.OrderByDescending(x => x.PublishDate).ToList();
         }
 
         public ArticleModel GetArticle(int id)

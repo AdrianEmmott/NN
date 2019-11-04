@@ -15,10 +15,12 @@ export class Article {
 export class ArticleSummary {
     id: number;
     title: string;
+    headerImage: string;
     summary: string;
     viewCount: number;
     author: string;
     publishDate: Date;
+    formattedPublishDate: string;
   }
 
 export class TagModel {

@@ -39,8 +39,8 @@ export class ArticleComponent implements OnInit {
 
     this.articleObservable$.subscribe((article: Article) => {
       this.article = article;
-      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
-      console.log(this.safeContent);
+      // this.safeContent = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
+      // console.log(this.safeContent);
       }
     );
   }

@@ -7,9 +7,9 @@ namespace webApi.Contracts
     {
         ArticleModel GetArticle(int id);
         List<ArticleModel> GetArticles();
-        List<ArticleModelSummary> GetArticlesSummary();
+        List<ArticleSummaryModel> GetArticlesSummary();
 
-        List<ArticleModelSummary> GetArticlesSummaryByTagPath(string tagPath);
+        List<ArticleSummaryModel> GetArticlesSummaryByTagPath(string tagPath);
         void UpdateViewCount(int id);
     }
 }

@@ -3,9 +3,6 @@ import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/ro
 import { TagService } from '../tag.service';
 import { TagModel } from '../article.models';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { LanderComponent } from '../lander/lander.component';
-import { ArticleComponent } from '../article/article.component';
 
 @Component({
   selector: 'app-nav',
@@ -19,7 +16,6 @@ export class NavComponent implements OnInit {
               private tagService: TagService) { }
 
   public tagObservable$: Observable<Array<TagModel>>;
-  public tags: Array<TagModel>;
   public navTags: Array<TagModel>;
 
   ngOnInit() {
@@ -30,22 +26,13 @@ export class NavComponent implements OnInit {
     this.tagObservable$ = this.tagService.getTagsFlattened();
 
     this.tagObservable$.subscribe((tags: Array<TagModel>) => {
-      this.tags = tags;
-
       this.navTags = new Array<TagModel>();
 
-      this.tags.forEach(tag => {
-        this.router.config.unshift(
-          { path: tag.path.substring(1), component: LanderComponent, pathMatch: 'full', data: { tagId: tag.id } }
-          , { path: tag.path.substring(1) + '/articles/:id', component: ArticleComponent, pathMatch: 'full' }
-        );
-
+      tags.forEach(tag => {
         if (tag.showInNav) {
           this.navTags.push(tag);
         }
       });
-
-      // console.log(this.router);
     });
   }
 }

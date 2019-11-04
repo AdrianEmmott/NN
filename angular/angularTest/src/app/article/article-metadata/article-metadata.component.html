@@ -8,7 +8,7 @@
         <section class="tags clearfix" *ngIf="articleTags != null">
             <p class="title">Filed under:</p>
             <a class="tag" [routerLink]="tag.path" *ngFor="let tag of articleTags.tags">
-                {{ tag.path }}
+                {{ tag.path.substring(1) }}
             </a>
         </section>
     </section>

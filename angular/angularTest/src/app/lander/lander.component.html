@@ -1,6 +1,10 @@
-<p>lander works! {{ router.url }}</p>
-<section *ngIf="articleSummaryByTagPath">
-    <p *ngFor="let article of articleSummaryByTagPath">
-        <a [routerLink]="[router.url + '/articles', article.id]">{{ article.title }}</a>
-    </p>
+<section class="container article box" *ngIf="articleSummaryByTagPath">
+    <h1>{{ router.url }}</h1>
+    <section class="article-summary clearfix" *ngFor="let article of articleSummaryByTagPath">
+        <a [routerLink]="[router.url + '/articles', article.id]">
+            <section class="publish-date">{{ article.formattedPublishDate.toUpperCase() }}</section>
+            <img class="image" src="{{ article.headerImage }}" alt="{{ article.title }}" /></a>
+        <a class="title" [routerLink]="[router.url + '/articles', article.id]">{{ article.title }}</a>
+        <p class="summary-text">{{ article.summary }}</p>
+    </section>
 </section>

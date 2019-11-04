@@ -22,8 +22,8 @@ export class LanderComponent implements OnInit {
   public tagObservable$: Observable<Array<TagModel>>;
   public tags: Array<TagModel>;
 
-  private articleSummaryByTagPath$: Observable<ArticleSummary>;
-  private articleSummaryByTagPath: ArticleSummary;
+  private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
+  private articleSummaryByTagPath: Array<ArticleSummary>;
 
   ngOnInit() {
     this.getArticlesSummary(this.router.url);
@@ -32,7 +32,7 @@ export class LanderComponent implements OnInit {
   getArticlesSummary(tagPath: string) {
     this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(tagPath);
 
-    this.articleSummaryByTagPath$.subscribe((summary: ArticleSummary) => {
+    this.articleSummaryByTagPath$.subscribe((summary: Array<ArticleSummary>) => {
       this.articleSummaryByTagPath = summary;
     });
   }

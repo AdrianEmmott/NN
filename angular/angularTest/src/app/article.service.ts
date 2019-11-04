@@ -31,12 +31,12 @@ export class ArticleService {
     return articlesSummary;
   }
 
-  public getArticlesSummaryByTagPath(tagPath: string): Observable<Article> {
+  public getArticlesSummaryByTagPath(tagPath: string): Observable<Array<ArticleSummary>> {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
 
-    const article = this.httpClient
-      .get<Article>('https://localhost:8080/api/articles/summary/tagpath?path=' + encodeURIComponent(tagPath));
-    return article;
+    const articleSummaries = this.httpClient
+      .get<Array<ArticleSummary>>('https://localhost:8080/api/articles/summary/tagpath?path=' + encodeURIComponent(tagPath));
+    return articleSummaries;
   }
 }
