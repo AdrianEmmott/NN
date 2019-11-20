@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getTags();
+    // this.getTags();
   }
 
   getTags() {
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 
     this.tagObservable$.subscribe((tags: Array<TagModel>) => {
       this.tags = tags;
+      console.log(this.router.config);
 
       this.tags.forEach(tag => {
         this.router.config.unshift(
@@ -37,6 +38,9 @@ export class AppComponent implements OnInit {
           , { path: tag.path.substring(1) + '/articles/:id', component: ArticleComponent, pathMatch: 'full' }
         );
       });
+
+      console.log('resetting config');
+      this.router.resetConfig(this.router.config);
 
       console.log(this.router);
     });

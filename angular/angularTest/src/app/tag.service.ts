@@ -29,13 +29,25 @@ export class TagService {
     return articleTags;
   }
 
+  public createArticleTags(articleTags: ArticleTagModel) {
+    const myHeaders = new HttpHeaders();
+    myHeaders.set('Content-Type', 'application/json');
+
+    console.log(articleTags);
+
+    this.httpClient.post('https://localhost:8080/api/tags/create-article-tags'
+      , articleTags
+      , { headers: myHeaders })
+      .subscribe();
+  }
+
   public updateArticleTags(articleTags: ArticleTagModel) {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
 
     console.log(articleTags);
 
-    this.httpClient.post('https://localhost:8080/api/tags/article/update'
+    this.httpClient.post('https://localhost:8080/api/tags/article/update-article-tags'
       , articleTags
       , { headers: myHeaders })
       .subscribe();

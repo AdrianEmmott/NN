@@ -13,38 +13,26 @@ namespace webApi.Services
     public class ArticlePublisherService : IArticlePublisherService
     {
         private const string Path = "Data/articles.json";
+        private readonly IArticleService _articleService;
 
-        public ArticlePublisherService() { }
+        public ArticlePublisherService(IArticleService articleService) => _articleService = articleService;
 
-        public void CreateArticle(ArticlePublisherModel model)
+        public int CreateArticle(ArticlePublisherModel model)
         {
-
+            model.Id = GetNextArticleId();
+            JSONHelper.CreateJSONElement(Path, model);
+            return model.Id;
         }
 
         public void UpdateArticle(ArticlePublisherModel model)
         {
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            serializerSettings.Formatting = Formatting.Indented;
+            JSONHelper.UpdateJSONElement(Path, "id", model, model.Id);
+        }
 
-            string json = File.ReadAllText(Path);
-
-            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json, serializerSettings);
-
-            JArray articlesArray = (JArray)jsonObj;
-
-            var newjToken = JToken.FromObject(model);
-
-            articlesArray
-                .Where(x => x["id"].Value<int>() == model.Id)
-                .FirstOrDefault().Replace(newjToken);
-
-            jsonObj = articlesArray;
-
-            string output = Newtonsoft.Json.JsonConvert
-                    .SerializeObject(jsonObj, serializerSettings.Formatting, serializerSettings);
-
-            File.WriteAllText(Path, output);
+        public int GetNextArticleId()
+        {
+            var nextArticleId = _articleService.GetLatestArticleId() + 1;
+            return nextArticleId;
         }
     }
 }

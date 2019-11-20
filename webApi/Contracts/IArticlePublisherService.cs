@@ -5,7 +5,10 @@ namespace webApi.Contracts
 {
     public interface IArticlePublisherService
     {
-        void CreateArticle(ArticlePublisherModel model);
+        int CreateArticle(ArticlePublisherModel model);
+        
         void UpdateArticle(ArticlePublisherModel model);
+
+        int GetNextArticleId();
     }
 }

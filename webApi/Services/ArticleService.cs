@@ -23,115 +23,90 @@ namespace webApi.Services
 
         public List<ArticleModel> GetArticles()
         {
-            using (StreamReader r = new StreamReader(Path))
-            {
-                string json = r.ReadToEnd();
-
-                List<ArticleModel> items =
-                    JsonConvert.DeserializeObject<List<ArticleModel>>(json);
-                return items;
-            }
+            var model = JSONHelper.Deseriaize(Path, new List<ArticleModel>());
+            return model;
         }
 
         public List<ArticleSummaryModel> GetArticlesSummary()
         {
-            using (StreamReader r = new StreamReader(Path))
-            {
-                string json = r.ReadToEnd();
-
-                List<ArticleSummaryModel> items =
-                    JsonConvert.DeserializeObject<List<ArticleSummaryModel>>(json);
-                return items;
-            }
+            var model = JSONHelper.Deseriaize(Path, new List<ArticleSummaryModel>());
+            return model;
         }
 
         public List<ArticleSummaryModel> GetArticlesSummaryByTagPath(string tagPath)
         {
-            if (!tagPath.StartsWith('/'))
-            {
-                tagPath = "/" + tagPath;
-            }
-            var flattenedTags = _tagService.GetFlattenedTags(null);
+            tagPath = _tagService.SetTagPath(_tagService.TagPathToTagPathList(tagPath));
 
-            if (!flattenedTags.Any(x => x.Path == tagPath))
-            {
-                return null;
-            }
+            return BuildArticleSummaryList(_tagService.FindTagByPath(tagPath),
+                                            _tagService.TagPathRootSearch(tagPath));
+        }
 
-            List<ArticleSummaryModel> returnModel = new List<ArticleSummaryModel>();
-            var summaryModel = GetArticlesSummary();
-
-            var tag = flattenedTags.Where(x => x.Path == tagPath).FirstOrDefault();
+        public List<ArticleSummaryModel> BuildArticleSummaryList(TagModel tag, bool rootSearch)
+        {
+            List<ArticleSummaryModel> model =
+                new List<ArticleSummaryModel>();
 
             if (tag != null)
             {
+                var summaryModel = GetArticlesSummary();
+
                 foreach (var articleSummary in summaryModel)
                 {
                     ArticleTagModel articleTags = _tagService.GetTagsByArticleId(articleSummary.Id);
 
-                    if (articleTags.Tags.Any(x => x.Path == tag.Path))
+                    if (articleTags != null)
                     {
-                        returnModel.Add(articleSummary);
+                        if (rootSearch)
+                        {
+                            if (articleTags.Tags.Any(x => x.Path.StartsWith(tag.Path)))
+                            {
+                                model.Add(articleSummary);
+                            }
+                        }
+                        else
+                        {
+                            if (articleTags.Tags.Any(x => x.Path == tag.Path))
+                            {
+                                model.Add(articleSummary);
+                            }
+                        }
                     }
                 }
             }
-            return returnModel.OrderByDescending(x => x.PublishDate).ToList();
+
+            return model.OrderByDescending(x => x.PublishDate).ToList();
         }
 
         public ArticleModel GetArticle(int id)
         {
-            using (StreamReader r = new StreamReader(Path))
+            var model = JSONHelper.Deseriaize(Path, new List<ArticleModel>())
+                .Where(x => x.Id == id).FirstOrDefault();
+            UpdateViewCount(model);
+            return model;
+        }
+
+        public void UpdateViewCount(ArticleModel article)
+        {
+            if (article != null && article.Id > 0)
             {
-                string json = r.ReadToEnd();
+                var jArray = JSONHelper.CreateJArray(Path);
 
-                // dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-                // JArray articlesArray = (JArray)jsonObj;
-                // var articleJToken = articlesArray.FirstOrDefault(x => x["id"].Value<int>() == id).FirstOrDefault();
+                int currentViewCount = jArray
+                                        .FirstOrDefault(x => x["id"].Value<int>() == article.Id)["views"].Value<int>();
 
-                // ArticleModel model = new ArticleModel();
+                int newViewCount = currentViewCount;
+                newViewCount++;
 
-                // model.Id = articleJToken.Parent.Value<int>("id");
-                // model.Title = articleJToken.Parent.Value<string>("title");
-                // model.SubTitle = articleJToken.Parent.Value<string>("subTitle");
-                // model.Summary = articleJToken.Parent.Value<string>("summary");
-                // model.HeaderImage = articleJToken.Parent.Value<string>("headerImage");
-                // model.Content = articleJToken.Parent.Value<string>("content");
-                // model.Author = articleJToken.Parent.Value<string>("author");
-                // model.PublishDate = articleJToken.Parent.Value<DateTime>("publishDate");
-                // model.Views = articleJToken.Parent.Value<int>("views");
-                // model.Tags =  articleJToken.Parent.Value<JArray>("tags").ToObject<List<int>>();
+                jArray.FirstOrDefault(x => x["id"].Value<int>() == article.Id)["views"] = newViewCount;
 
-                var model =
-                    JsonConvert.DeserializeObject<List<ArticleModel>>(json)
-                    .Where(x => x.Id == id).FirstOrDefault();
-
-                if (model != null && model.Id > 0)
-                {
-                    UpdateViewCount(id);
-                }
-
-                return model;
+                JSONHelper.WriteToFile(Path, jArray);
             }
         }
 
-        public void UpdateViewCount(int id)
+        public int GetLatestArticleId()
         {
-            string json = File.ReadAllText(Path);
-            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-            JArray articlesArray = (JArray)jsonObj;
-
-            int currentViewCount = articlesArray
-                                    .FirstOrDefault(x => x["id"].Value<int>() == id)["views"].Value<int>();
-
-            int newViewCount = currentViewCount;
-            newViewCount++;
-
-            articlesArray.FirstOrDefault(x => x["id"].Value<int>() == id)["views"] = newViewCount;
-
-            jsonObj = articlesArray;
-
-            string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(Path, output);
+            var latestArticleId = GetArticles().OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            return latestArticleId;
         }
     }
 }

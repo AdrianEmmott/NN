@@ -8,6 +8,8 @@ using webApi.Models;
 using webApi.Contracts;
 using webApi.Services;
 using webApi.CommandHandlers;
+using MediatR;
+using webApi.Commands.Tags;
 
 namespace webApi.Controllers
 {
@@ -17,10 +19,12 @@ namespace webApi.Controllers
     public class TagsController : ControllerBase
     {
         private readonly ITagService _tagService;
+        private readonly IMediator _mediator;
 
-        public TagsController(ITagService tagService)
+        public TagsController(ITagService tagService, IMediator mediator)
         {
             _tagService = tagService;
+            _mediator = mediator;
         }
 
         [HttpGet("all/flattened")]
@@ -44,7 +48,14 @@ namespace webApi.Controllers
              return Ok(model); 
         }
 
-        [HttpPost("article/update")]
+        [HttpPost("create-article-tags")]
+        public ActionResult CreateTagsByArticleId(ArticleTagModel model)
+        {
+            _mediator.Send(new CreateArticleTagsCommand(model));
+            return Ok();
+        }
+
+        [HttpPost("update-article-tags")]
         public ActionResult UpdateTagsByArticleId(ArticleTagModel model) 
         {
             _tagService.UpdateArticleTags(model);

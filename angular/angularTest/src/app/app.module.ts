@@ -37,6 +37,7 @@ import { PublisherStep5Component } from './publisher/publisher-step5/publisher-s
 import { ArticleComponent } from './article/article.component';
 import { ArticleMetadataComponent } from './article/article-metadata/article-metadata.component';
 import { LanderComponent } from './lander/lander.component';
+import { DynamicRoutes} from './dynamic-routes';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -84,7 +85,7 @@ import { LanderComponent } from './lander/lander.component';
   entryComponents: [
     LanderComponent
   ],
-  providers: [],
+  providers: [DynamicRoutes],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

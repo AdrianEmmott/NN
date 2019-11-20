@@ -24,9 +24,9 @@ export class PublisherComponent implements OnInit {
   step2Visible = false;
 
   constructor(private articleService: ArticleService,
-              private route: ActivatedRoute,
-              private articlePublisherService: ArticlePublisherService,
-              private tagService: TagService) { }
+    private route: ActivatedRoute,
+    private articlePublisherService: ArticlePublisherService,
+    private tagService: TagService) { }
 
   public articleObservable$: Observable<Article>;
   public articleTagsObservable$: Observable<ArticleTagModel>;
@@ -35,21 +35,30 @@ export class PublisherComponent implements OnInit {
   private articleTags: ArticleTagModel;
 
   ngOnInit() {
-    this.getArticleTags();
-    this.getArticle();
+    const idParam = this.route.snapshot.paramMap.get('id');
+    console.log(idParam);
 
-    this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {
-      this.articleTags = articleTags;
+    if (idParam != null) {
+      this.getArticleTags();
+      this.getArticle();
 
-      this.articleObservable$.subscribe((article: Article) => {
-        this.article = article;
+      this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {
+        this.articleTags = articleTags;
 
-        if (this.article != null) {
-          console.log(this.articleTags);
-          this.article.tagIds = this.articleTags.tagIds;
-        }
+        this.articleObservable$.subscribe((article: Article) => {
+          this.article = article;
+          console.log(this.article);
+
+          if (this.article != null) {
+            // console.log(this.articleTags);
+            this.article.tagIds = this.articleTags.tagIds;
+          }
+        });
       });
-    });
+    } else {
+      this.article = new Article();
+      this.articleTags = new ArticleTagModel();
+    }
   }
 
   getArticle() {
@@ -91,12 +100,23 @@ export class PublisherComponent implements OnInit {
     this.article.tagIds = this.step2Component.article.tagIds;
   }
 
-  updateArticleClick() {
-    console.log(this.article);
+  upsertArticleClick() {
     const articleTags = new ArticleTagModel();
-    articleTags.articleId = this.article.id;
-    articleTags.tagIds = this.article.tagIds;
-    this.tagService.updateArticleTags(articleTags);
-    this.articlePublisherService.updateArticle(this.article);
+
+    if (this.article.id > 0) {
+      this.articlePublisherService.updateArticle(this.article);
+      articleTags.articleId = this.article.id;
+      articleTags.tagIds = this.article.tagIds;
+      this.tagService.updateArticleTags(articleTags);
+    } else {
+      // this.article.id = this.articlePublisherService.createArticle(this.article);
+      this.articlePublisherService.createArticle(this.article).subscribe(response => {
+        this.article.id = response.result;
+        console.log(this.article.id);
+        articleTags.articleId = this.article.id;
+        articleTags.tagIds = this.article.tagIds;
+        this.tagService.createArticleTags(articleTags);
+      });
+    }
   }
 }

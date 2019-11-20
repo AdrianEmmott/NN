@@ -18,12 +18,13 @@ export class ArticleSidebarComponent implements OnInit {
 
   private articleSummary: ArticleSummary;
 
-  private articleSummaryByTagPath$: Observable<ArticleSummary>;
-  private articleSummaryByTagPath: ArticleSummary;
+  private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
+  private articleSummaryByTagPath: Array<ArticleSummary>;
   private urlSegments: Array<UrlSegment>;
+  private tagPath: string;
 
   ngOnInit() {
-    this.getArticlesSummary(this.router.url);
+    this.getArticlesSummary();
 
     const id: Observable<string> = this.route.params.pipe(map(p => p.id));
     const url: Observable<string> = this.route.url.pipe(map(segments => segments.join('')));
@@ -33,35 +34,40 @@ export class ArticleSidebarComponent implements OnInit {
     const tree: UrlTree = this.router.parseUrl(this.router.url);
     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
     this.urlSegments = g.segments;
-    console.log(this.urlSegments);
+    // console.log(this.urlSegments);
     // s[0].path; // returns 'team'
     // s[0].parameters; // returns {id: 33}
     // console.log(this.urlSegments[0].path);
 
 
-    this.urlSegments.forEach(segment => {
-      if (segment.path === 'articles') {
-        console.log('in there in there in there ');
-        console.log(segment);
-      }
-    });
+    // this.urlSegments.forEach(segment => {
+    //   if (segment.path === 'articles') {
+    //     console.log('in there in there in there ');
+    //     console.log(segment);
+    //   }
+    // });
   }
 
-  getArticlesSummary(tagPath: string) {
-    // console.log(tagPath);
+  getArticlesSummary() {
+    const tree: UrlTree = this.router.parseUrl(this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    this.urlSegments = g.segments;
 
-    const searchIndex = tagPath.search('articles');
-    if (searchIndex > 0) {
-      // console.log('search works');
-      // console.log(searchIndex);
-      tagPath = tagPath.substring(0, searchIndex - 1);
-      // console.log(tagPath);
+    const urlSegmentsArr = new Array<string>();
+
+    for (const segment of this.urlSegments) {
+      if (segment.path === 'articles') {
+        break;
+      }
+      urlSegmentsArr.push(segment.path);
     }
 
-    this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(tagPath);
+    console.log(urlSegmentsArr);
+    this.tagPath = urlSegmentsArr.join('/');
 
-    this.articleSummaryByTagPath$.subscribe((summary: ArticleSummary) => {
-      // console.log(summary);
+    this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(urlSegmentsArr);
+
+    this.articleSummaryByTagPath$.subscribe((summary: Array<ArticleSummary>) => {
       this.articleSummaryByTagPath = summary;
     });
   }

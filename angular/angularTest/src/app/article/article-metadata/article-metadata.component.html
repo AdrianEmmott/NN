@@ -3,7 +3,7 @@
         <p>
             <span>{{article.author}}</span> <span>{{article.publishDate}}</span>
 
-            <a [routerLink]="['/publisher/article', article.id]">Edit article</a>
+            <a [routerLink]="['/publisher/create', article.id]">Edit article</a>
         </p>
         <section class="tags clearfix" *ngIf="articleTags != null">
             <p class="title">Filed under:</p>

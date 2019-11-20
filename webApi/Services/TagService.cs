@@ -3,10 +3,8 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using webApi.Contracts;
 using webApi.Models;
-using System;
 
 namespace webApi.Services
 {
@@ -15,41 +13,26 @@ namespace webApi.Services
         private const string TagsPath = "Data/tags.json";
         private const string ArticleTagsPath = "Data/article-tags.json";
 
-        public TagService()
+        public List<TagModel> GetFlattenedTags(List<TagModel> model = null, bool keepChildren = false)
         {
-
-        }
-
-        public List<TagModel> GetFlattenedTags(List<TagModel> model)
-        {
-            if (model == null)
-            {
-                model = GetAllTags();
-            }
+            model = model ?? GetAllTags();
 
             model = model.Flatten(c => c.Tags).ToList();
 
-            model.ForEach(x => x.Tags = null);
-            model = model.OrderBy(x => x.SortOrder).ToList();
+            if (!keepChildren)
+            {
+                model.ForEach(x => x.Tags = null);
+            }
 
-            return model;
+            return model.OrderBy(x => x.SortOrder).ToList();
         }
 
         public List<TagModel> GetAllTags()
         {
-            using (StreamReader r = new StreamReader(TagsPath))
-            {
-                string json = r.ReadToEnd();
-
-                List<TagModel> tags =
-                    JsonConvert.DeserializeObject<List<TagModel>>(json);
-
-                tags = BuildTagPaths(tags, null);
-
-                tags = tags.OrderBy(x => x.SortOrder).ToList();
-
-                return tags;
-            }
+            var model = JSONHelper.Deseriaize(TagsPath, new List<TagModel>());
+            model = BuildTagPaths(model, null).OrderBy(x => x.SortOrder)
+                .ToList();
+            return model;
         }
 
         public ArticleTagModel GetTagsByArticleId(int articleId)
@@ -62,49 +45,80 @@ namespace webApi.Services
                     JsonConvert.DeserializeObject<List<ArticleTagModel>>(json)
                     .Where(x => x.ArticleId == articleId).FirstOrDefault();
 
-                var flattenedTags = GetFlattenedTags(null);
-
-                foreach (var tagId in articleTags.TagIds)
+                if (articleTags != null && articleTags.TagIds.Count > 0)
                 {
-                    var tag = FindTagById(flattenedTags, tagId);
-                    if (tag != null)
-                    {
-                        articleTags.Tags.Add(tag);
-                    }
-                }
+                    var flattenedTags = GetFlattenedTags(null);
 
-                articleTags.Tags.ForEach(x => x.Tags = null);
-                articleTags.TagIds = articleTags.TagIds.OrderBy(x => x).ToList();
-                articleTags.Tags = articleTags.Tags.OrderBy(x => x.Path).ToList();
+                    foreach (var tagId in articleTags.TagIds)
+                    {
+                        var tag = FindTagById(flattenedTags, tagId);
+                        if (tag != null)
+                        {
+                            articleTags.Tags.Add(tag);
+                        }
+                    }
+
+                    articleTags.Tags.ForEach(x => x.Tags = null);
+                    articleTags.TagIds = articleTags.TagIds.OrderBy(x => x).ToList();
+                    articleTags.Tags = articleTags.Tags.OrderBy(x => x.Path).ToList();
+                }
 
                 return articleTags;
             }
         }
 
+        public void CreateArticleTags(ArticleTagModel model)
+        {
+            JSONHelper.CreateJSONElement(ArticleTagsPath, model);
+        }
+
         public void UpdateArticleTags(ArticleTagModel model)
         {
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            serializerSettings.Formatting = Formatting.Indented;
+            JSONHelper.UpdateJSONElement(ArticleTagsPath, "articleId", model, model.ArticleId);
+        }
 
-            string json = File.ReadAllText(ArticleTagsPath);
+        public List<string> TagPathToTagPathList(string tagPath)
+        {
+            List<string> tagPaths = tagPath.ToString().Split(',').ToList();
+            return tagPaths;
+        }
 
-            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json, serializerSettings);
+        public string SetTagPath(List<string> tagPaths)
+        {
+            string tagPath = tagPaths.Count == 1 ?
+                tagPaths.FirstOrDefault() : string.Join("/", tagPaths);
 
-            JArray articleTags = (JArray)jsonObj;
+            if (!tagPath.StartsWith('/'))
+            {
+                tagPath = "/" + tagPath;
+            }
 
-            var newjToken = JToken.FromObject(model);
+            return tagPath;
+        }
 
-            articleTags
-                .Where(x => x["articleId"].Value<int>() == model.ArticleId)
-                .FirstOrDefault().Replace(newjToken);
+        public bool TagPathRootSearch(List<string> tagPaths)
+        {
+            return tagPaths.Count == 1;
+        }
 
-            jsonObj = articleTags;
+        public bool TagPathRootSearch(string tagPath)
+        {
+            return tagPath.Count(x => x == '/') == 1;
+        }
 
-            string output = Newtonsoft.Json.JsonConvert
-                    .SerializeObject(jsonObj, serializerSettings.Formatting, serializerSettings);
+        public TagModel FindTagByPath(string tagPath)
+        {
+            TagModel tag = null;
+            var flattenedTags = GetFlattenedTags();
 
-            File.WriteAllText(ArticleTagsPath, output);
+            if (!flattenedTags.Any(x => x.Path == tagPath))
+            {
+                return null;
+            }
+
+            tag = flattenedTags.Where(x => x.Path == tagPath).FirstOrDefault();
+
+            return tag;
         }
 
         private List<TagModel> BuildTagPaths(List<TagModel> tags, string path)
@@ -185,34 +199,6 @@ namespace webApi.Services
             }
 
             return path;
-        }
-    }
-
-    public static class IEnumerableExtensions
-    {
-        public static IEnumerable<T> Flatten<T>(
-            this IEnumerable<T> items,
-            Func<T, IEnumerable<T>> getChildren)
-        {
-            if (items == null)
-            {
-                yield break;
-            }
-
-            var stack = new Stack<T>(items);
-            while (stack.Count > 0)
-            {
-                var current = stack.Pop();
-                yield return current;
-
-                if (current == null) continue;
-
-                var children = getChildren(current);
-                if (children == null) continue;
-
-                foreach (var child in children)
-                    stack.Push(child);
-            }
         }
     }
 }

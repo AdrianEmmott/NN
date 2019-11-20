@@ -45,10 +45,10 @@ namespace webApi.Controllers
              return Ok(model); 
         }
 
-        [HttpGet("summary/tagpath")]
-        public ActionResult GetArticlesSummaryByTagPath(string path)
+        [HttpGet("summary/tagpaths")]
+        public ActionResult GetArticlesSummaryByTagPath([FromQuery(Name = "tags")] string tags)
         {
-            var model = _articleService.GetArticlesSummaryByTagPath(path);
+            var model = _articleService.GetArticlesSummaryByTagPath(tags);
             return Ok(model);
         }
 
