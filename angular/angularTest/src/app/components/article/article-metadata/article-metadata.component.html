@@ -1,0 +1,15 @@
+<div class="box" id="article-meta-data">
+    <section *ngIf="article">
+        <p>
+            <span>{{article.author}}</span> <span>{{article.publishDate}}</span>
+
+            <a [routerLink]="['/publisher/article', article.id]">Edit article</a>
+        </p>
+        <section class="tags clearfix" *ngIf="articleTags != null">
+            <p class="title">Filed under:</p>
+            <a class="tag" [routerLink]="tag.path" *ngFor="let tag of articleTags.tags">
+                {{ tag.path.substring(1) }}
+            </a>
+        </section>
+    </section>
+</div>

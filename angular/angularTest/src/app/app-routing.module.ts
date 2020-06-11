@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router, Route } from '@angular/router';
-import { HomeComponent } from 'src/app/home/home.component';
-import { PublisherComponent } from 'src/app/publisher/publisher.component';
-import { ArticleComponent } from 'src/app/article/article.component';
-import { TagModel } from './article.models';
+import { HomeComponent } from 'src/app/components/home/home.component';
+import { PublisherComponent } from 'src/app/components/publisher/publisher.component';
+import { ArticleComponent } from 'src/app/components/article/article.component';
+import { TagModel } from './models/article.models';
 import { Observable } from 'rxjs';
-import { TagService } from './tag.service';
-import { LanderComponent } from './lander/lander.component';
+import { TagService } from './services/tag.service';
+import { LanderComponent } from './components/lander/lander.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', outlet: 'outlet-home' },

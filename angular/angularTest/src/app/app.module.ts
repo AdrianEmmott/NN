@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 
 import { FormsModule  } from '@angular/forms';
 
@@ -18,25 +18,25 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
-import { PublisherComponent } from './publisher/publisher.component';
-import { PublisherStep1Component } from './publisher/publisher-step1/publisher-step1.component';
-import { PublisherStep2Component } from './publisher/publisher-step2/publisher-step2.component';
-import { HeaderComponent } from './header/header.component';
-import { NavComponent } from './nav/nav.component';
-import { FooterComponent } from './footer/footer.component';
-import { IntroComponent } from './intro/intro.component';
-import { BannerComponent } from './banner/banner.component';
-import { MainComponent } from './main/main.component';
-import { HighlightNewsComponent } from './highlight-news/highlight-news.component';
-import { HighlightBlogComponent } from './highlight-blog/highlight-blog.component';
-import { ArticleBodyComponent } from './article/article-body/article-body.component';
-import { HomeComponent } from './home/home.component';
-import { ArticleSidebarComponent } from './article/article-sidebar/article-sidebar.component';
+import { PublisherComponent } from './components/publisher/publisher.component';
+import { PublisherStep1Component } from './components/publisher/publisher-step1/publisher-step1.component';
+import { PublisherStep2Component } from './components/publisher/publisher-step2/publisher-step2.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { IntroComponent } from './components/intro/intro.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { MainComponent } from './components/main/main.component';
+import { HighlightNewsComponent } from './components/highlight-news/highlight-news.component';
+import { HighlightBlogComponent } from './components/highlight-blog/highlight-blog.component';
+import { ArticleBodyComponent } from './components/article/article-body/article-body.component';
+import { HomeComponent } from './components/home/home.component';
+import { ArticleSidebarComponent } from './components/article/article-sidebar/article-sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PublisherStep5Component } from './publisher/publisher-step5/publisher-step5.component';
-import { ArticleComponent } from './article/article.component';
-import { ArticleMetadataComponent } from './article/article-metadata/article-metadata.component';
-import { LanderComponent } from './lander/lander.component';
+import { PublisherStep5Component } from './components/publisher/publisher-step5/publisher-step5.component';
+import { ArticleComponent } from './components/article/article.component';
+import { ArticleMetadataComponent } from './components/article/article-metadata/article-metadata.component';
+import { LanderComponent } from './components/lander/lander.component';
 import { DynamicRoutes} from './dynamic-routes';
 
 

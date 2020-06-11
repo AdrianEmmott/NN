@@ -1,9 +1,9 @@
 import { OnInit, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TagModel } from './article.models';
-import { TagService } from './tag.service';
-import { LanderComponent } from './lander/lander.component';
-import { ArticleComponent } from './article/article.component';
+import { TagModel } from './models/article.models';
+import { TagService } from './services/tag.service';
+import { LanderComponent } from './components/lander/lander.component';
+import { ArticleComponent } from './components/article/article.component';
 @Injectable()
 export class DynamicRoutes {
     constructor(private tagService: TagService, ) {
