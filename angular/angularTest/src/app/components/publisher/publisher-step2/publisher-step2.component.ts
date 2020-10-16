@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-//import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor5, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { ArticlePublisherService } from 'src/app/services/article.publisher.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../../../models/article.models';
@@ -13,7 +11,7 @@ import SimpleFileUpload from '@samhammer/ckeditor5-simple-image-upload-plugin';
 })
 export class PublisherStep2Component implements OnInit {
   @Input() article: Article;
-  public Editor = CKEditorComponent;
+//  public Editor = CKEditorComponent;
 
   constructor(private articleService: ArticleService,
               private articlePublisherService: ArticlePublisherService) { }

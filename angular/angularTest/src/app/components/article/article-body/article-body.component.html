@@ -4,8 +4,9 @@
         <img src="{{article.headerImage}}" alt="">
     </a>
     <header>
-        <h2>{{article.title}}</h2>
+        <h1 class="mat-display-1">{{article.title}}</h1>
+        <!-- <h2>{{article.title}}</h2> -->
         <p>{{article.subTitle}}</p>
     </header>
-    <section [innerHTML]="article.content"></section>
+    <section [innerHTML]="article.content" class="mat-typography"></section>
 </article>

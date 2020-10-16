@@ -8,7 +8,10 @@ import { AppComponent } from './components/app.component';
 import { FormsModule  } from '@angular/forms';
 
 import { MaterialModule } from './material.module';
-import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+//import { MatMomentDateModule } from "@angular/material.core";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -17,7 +20,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+//import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 import { PublisherComponent } from './components/publisher/publisher.component';
 import { PublisherStep1Component } from './components/publisher/publisher-step1/publisher-step1.component';
@@ -72,10 +75,12 @@ import { DynamicRoutes} from './dynamic-routes';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    CKEditorModule,    
+    //CKEditorModule,    
 
     MaterialModule,
-    MatDatepickerModule, MatInputModule, MatNativeDateModule,
+    MatDatepickerModule, 
+    MatNativeDateModule,
+    MatInputModule,
     MatStepperModule,
     MatTabsModule,
     MatIconModule,

@@ -5,8 +5,10 @@
 @import 'assets/libs/vendor';
 @import 'assets/libs/breakpoints';
 @import 'assets/libs/html-grid';
+//@import './app-theme';
 @import url("assets/fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
+
 
 /*
 	Dopetrope by HTML5 UP
@@ -117,7 +119,7 @@
 
 	body {
 		background: #ffffff;
-		background-image: url('src/assets/images/bg.png');
+		background-image: url('/assets/images/bg.png');
 
 		// Stops initial animations until page loads.
 			&.is-preload {
@@ -1059,7 +1061,7 @@
 
 	#main {
 		position: relative;
-		background: #f7f7f7 url('src/assets/images/bg.png');
+		background: #f7f7f7 url('/assets/images/bg.png');
 		padding: 2em 0 4em 0;
 
 		&:before {
@@ -1068,7 +1070,7 @@
 			top: 0;
 			left: 0;
 			width: 100%;
-			background: url('src/assets/images/bg.png');
+			background: url('/assets/images/bg.png');
 			background-size: 100% 100%;
 			z-index: 0;
 			opacity: 0.1;
@@ -1076,7 +1078,7 @@
 
 		.major {
 			h2 {
-				background: #f7f7f7 url('src/assets/images/bg.png');
+				background: #f7f7f7 url('/assets/images/bg.png');
 			}
 		}
 	}
@@ -1095,7 +1097,7 @@
 			top: 0;
 			left: 0;
 			width: 100%;
-			background: url('src/assets/images/bg.png');
+			background: url('/assets/images/bg.png');
 			background-size: 100% 100%;
 			z-index: 0;
 			opacity: 0.5;
@@ -1411,7 +1413,7 @@
 				width: _size(navPanel);
 				z-index: _misc(z-index-base) + 2;
 				color: #858484;
-				background-image: url('src/assets/images/bg.png');
+				background-image: url('/assets/images/bg.png');
 				box-shadow: inset -3px 0px 5px 0px rgba(0, 0, 0, 0.35);
 
 				.link {
@@ -1484,7 +1486,7 @@
 		/* Basic */
 
 			body, input, textarea, select {
-				font-size: 11pt;
+				font-size: large;
 			}
 
 			h2, h3, h4, h5, h6 {
