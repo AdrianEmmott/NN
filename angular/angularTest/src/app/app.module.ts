@@ -16,7 +16,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 import { PublisherComponent } from './components/publisher/publisher.component';
 import { PublisherStep1Component } from './components/publisher/publisher-step1/publisher-step1.component';
@@ -71,7 +72,7 @@ import { DynamicRoutes} from './dynamic-routes';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    CKEditorModule,
+    CKEditorModule,    
 
     MaterialModule,
     MatDatepickerModule, MatInputModule, MatNativeDateModule,

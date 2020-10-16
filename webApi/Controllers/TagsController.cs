@@ -21,7 +21,8 @@ namespace webApi.Controllers
         private readonly ITagService _tagService;
         private readonly IMediator _mediator;
 
-        public TagsController(ITagService tagService, IMediator mediator)
+        public TagsController(ITagService tagService,
+                              IMediator mediator)
         {
             _tagService = tagService;
             _mediator = mediator;
@@ -57,7 +58,8 @@ namespace webApi.Controllers
 
         [HttpPost("update-article-tags")]
         public ActionResult UpdateTagsByArticleId(ArticleTagModel model) 
-        {
+        //public ActionResult UpdateTagsByArticleId(string test) 
+        {            
             _tagService.UpdateArticleTags(model);
             return Ok();
         }

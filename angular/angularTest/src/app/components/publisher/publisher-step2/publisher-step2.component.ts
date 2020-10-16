@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+//import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor5, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { ArticlePublisherService } from 'src/app/services/article.publisher.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../../../models/article.models';
@@ -12,7 +13,7 @@ import SimpleFileUpload from '@samhammer/ckeditor5-simple-image-upload-plugin';
 })
 export class PublisherStep2Component implements OnInit {
   @Input() article: Article;
-  public Editor = ClassicEditor;
+  public Editor = CKEditorComponent;
 
   constructor(private articleService: ArticleService,
               private articlePublisherService: ArticlePublisherService) { }
@@ -22,7 +23,7 @@ export class PublisherStep2Component implements OnInit {
     const config = {
       extraPlugins: [myPlugin]
     };
-    this.Editor.extraPlugins = config;
+    //this.Editor.extraPlugins = config;
     // this.Editor.plugins.get( FileRepository ).createUploadAdapter = loader => new Adapter( loader );
     // console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
   }

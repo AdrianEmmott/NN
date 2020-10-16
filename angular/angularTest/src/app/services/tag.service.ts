@@ -44,12 +44,15 @@ export class TagService {
   public updateArticleTags(articleTags: ArticleTagModel) {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
+    ///myHeaders.set('Content-Type', 'text/plain');
 
-    console.log(articleTags);
+console.log(articleTags) ;
 
-    this.httpClient.post('https://localhost:8080/api/tags/article/update-article-tags'
+    this.httpClient.post('https://localhost:8080/api/tags/update-article-tags'
       , articleTags
-      , { headers: myHeaders })
+      //, JSON.stringify('Test')
+      , { headers: myHeaders }
+      )
       .subscribe();
   }
 }

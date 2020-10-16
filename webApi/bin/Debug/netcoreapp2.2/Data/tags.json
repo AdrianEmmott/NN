@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Sales",
+    "showInNav": true,
+    "sortOrder": 1,
+    "tags": [
+      {
+        "id": 2,
+        "title": "New",
+        "tags": [
+          {
+            "id": 11,
+            "title": "third level node 1",
+            "tags": [
+              {
+                "id": 13,
+                "title": "wow fourth level node 1"
+              },
+              {
+                "id": 14,
+                "title": "wow fourth level node 2"
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "title": "third level node 2"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Used"
+      },
+      {
+        "id": 4,
+        "title": "Fleet and Business"
+      },
+      {
+        "id": 5,
+        "title": "Fleetboard"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Marketing",
+    "showInNav": true,
+    "sortOrder": 2,
+    "tags": [
+      {
+        "id": 7,
+        "title": "New"
+      },
+      {
+        "id": 8,
+        "title": "Used"
+      },
+      {
+        "id": 9,
+        "title": "New Vans"
+      },
+      {
+        "id": 10,
+        "title": "Used Vans"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Product",
+    "showInNav": true,
+    "sortOrder": 3,
+    "tags": []
+  },
+  {
+    "id": 40,
+    "title": "Service",
+    "showInNav": true,
+    "sortOrder": 4,
+    "tags": []
+  },
+  {
+    "id": 50,
+    "title": "Parts",
+    "showInNav": true,
+    "sortOrder": 5,
+    "tags": []
+  },
+  {
+    "id": 60,
+    "title": "Training",
+    "showInNav": true,
+    "sortOrder": 6,
+    "tags": []
+  },
+  {
+    "id": 70,
+    "title": "MB Finance",
+    "showInNav": true,
+    "sortOrder": 7,
+    "tags": []
+  },
+  {
+    "id": 80,
+    "title": "Business Operatons",
+    "showInNav": true,
+    "sortOrder": 8,
+    "tags": []
+  }
+]
