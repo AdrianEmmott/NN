@@ -22,7 +22,7 @@
     "content": "<p>Vestibulum scelerisque ultricies libero id hendrerit. Vivamus malesuada quam faucibus ante dignissim auctor hendrerit libero placerat. Nulla facilisi. Proin aliquam felis non arcu molestie at accumsan turpis commodo. Proin elementum, nibh non egestas sodales, augue quam aliquet est, id egestas diam justo adipiscing ante. Pellentesque tempus nulla non urna eleifend ut ultrices nisi faucibus. Adrian Test 123</p><p>Praesent a dolor leo. Duis in felis in tortor lobortis volutpat et pretium tellus. Vestibulum ac ante nisl, a elementum odio. Duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis. placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet nullam consequat feugiat dolore tempus.</p><ol><li>Something</li><li>Something 2</li></ol><h3>Something else</h3><p>Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis. placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet nullam consequat feugiat dolore tempus.</p><blockquote><p>Nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet nullam consequat feugiat dolore tempus.</p></blockquote><h3>&nbsp;</h3><h3>So in conclusion</h3><figure class=\"image\"><img src=\"https://localhost:8080/wwwroot/uploads/images/07-mercedes-benz-vehicles-showcar-g-500-4x4-3400x1440.webp\"><figcaption>This is a 4x4 going off-road</figcaption></figure><p>Nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet nullam consequat feugiat dolore tempus. Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis.</p><p>&nbsp;</p>",
     "author": "Adrian Emmott",
     "publishDate": "2019-09-21T21:52:00",
-    "views": 310,
+    "views": 311,
     "tagIds": [
       11,
       13,
@@ -55,14 +55,15 @@
     "content": "<p>Are ya ready kids?<br>(Aye, aye, captain)<br>I can't hear you<br>(Aye, aye, captain)<br>Oh</p><p>Who lives in a pinneapple under the sea?<br>(Spongebob Squarepants)<br>Absorbent and yellow and porous is he?<br>(Spongebob Squarepants)<br>If nautical nonsense be something you wish?<br>(Spongebob Squarepants)<br>Then drop on the deck and flop…</p><figure class=\"image\"><img src=\"https://localhost:8080/wwwroot/uploads/images/patrick_spongebob.0.jpg\"></figure>",
     "author": "Adrian Emmott",
     "publishDate": "2020-10-16T23:00:00Z",
-    "views": 122,
+    "views": 133,
     "tagIds": [
       12,
       60
     ],
     "attachments": [
       "https://localhost:8080/wwwroot/uploads/files/test.txt",
-      "https://localhost:8080/wwwroot/uploads/files/NewTextDocument.txt"
+      "https://localhost:8080/wwwroot/uploads/files/test-Copy.txt",
+      "https://localhost:8080/wwwroot/uploads/files/test-Copy(2).txt"
     ]
   },
   {
@@ -74,7 +75,7 @@
     "content": "<p>I got loads of PPI recently and instead of rushing out and buying loads of garbage, I'm wondering what to spend it on.</p><p>I'm torn between a new sofa, putting the money to a new bathroom or loads of pointless shit on Amazon Prime- they've got an electric foot warmer for 60 quid!</p><figure class=\"image\"><img src=\"https://localhost:8080/wwwroot/uploads/images/Venice-Small-5-Piece-Bathroom-Suite_l.jpg\"><figcaption>Kitchens and bathrooms sell houses, Adrian. But Mother! I don't want to sell my house!</figcaption></figure><p>Or maybe I should just keep hold of it, I dunno. Lorem ipsum dolor sit amet sit veroeros sed amet blandit consequat veroeros lorem blandit adipiscing et feugiat phasellus tempus dolore ipsum lorem dolore.</p><figure class=\"image\"><img src=\"https://localhost:8080/wwwroot/uploads/images/scrooge_mcduck.jpg\"></figure>",
     "author": "Adrian Emmott",
     "publishDate": "2020-10-16T23:00:00Z",
-    "views": 17,
+    "views": 20,
     "tagIds": [
       1,
       11,

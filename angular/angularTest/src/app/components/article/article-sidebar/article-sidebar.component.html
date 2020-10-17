@@ -3,10 +3,9 @@
             <h3>More from: {{ tagPath }}</h3>
         </header>
         <ul class="divided">
-                <li *ngFor="let summary of articleSummaryByTagPath">
-                    
+                <li *ngFor="let summary of articleSummaryByTagPath">                    
                     <a [routerLink]="['/' + summary.path + '/articles', summary.id]">
-                        <img src="{{summary.headerImage}}" alt="article main image" style="width: 350px;" /><br/>
+                        <img src="{{summary.headerImage}}" alt="article main image" style="width: 370px;" /><br/>
                         {{summary.title}}
                     </a>
                 </li>

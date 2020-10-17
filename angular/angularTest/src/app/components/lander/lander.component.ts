@@ -21,6 +21,7 @@ export class LanderComponent implements OnInit {
 
   public tagObservable$: Observable<Array<TagModel>>;
   public tags: Array<TagModel>;
+  public pageTitle: string;
 
   private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
   private articleSummaryByTagPath: Array<ArticleSummary>;
@@ -28,6 +29,8 @@ export class LanderComponent implements OnInit {
 
   ngOnInit() {
     this.getArticlesSummary(this.router.url);
+    this.pageTitle = this.router.url.replaceAll('-', ' ');
+    console.log(this.pageTitle);
   }
 
   getArticlesSummary(tagPath: string) {

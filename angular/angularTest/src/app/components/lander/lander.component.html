@@ -1,5 +1,5 @@
 <section class="container article box" *ngIf="articleSummaryByTagPath">
-    <h1>{{ router.url }}</h1>
+    <h1>{{ pageTitle }}</h1>
     <section class="article-summary clearfix" *ngFor="let article of articleSummaryByTagPath">
         <a [routerLink]="[router.url + '/articles', article.id]">
             <section class="publish-date">{{ article.formattedPublishDate.toUpperCase() }}</section>

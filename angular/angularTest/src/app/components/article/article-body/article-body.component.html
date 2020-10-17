@@ -8,8 +8,8 @@
         <p>{{article.subTitle}}</p>
     </header>
     <section [innerHTML]="article.content"></section>
-    <section id="attachments">
-        <header><h4>attachments</h4></header>
+    <section id="attachments" *ngIf="article.attachments.length > 0">
+        <h4>attachments</h4>
         <li *ngFor="let attachment of article.attachments">
             <a (click)="downloadFile(attachment)">{{attachment}}</a>
         </li>        
