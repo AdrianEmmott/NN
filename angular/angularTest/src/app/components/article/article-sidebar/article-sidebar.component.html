@@ -1,16 +1,18 @@
 <section class="box" *ngIf="articleSummaryByTagPath">
         <header>
-            <h3>More {{ tagPath }} news</h3>
+            <h3>More from: {{ tagPath }}</h3>
         </header>
-        <p>Veroeros sed amet blandit consequat veroeros lorem blandit adipiscing et feugiat sed lorem consequat
-            feugiat lorem dolore.</p>
         <ul class="divided">
                 <li *ngFor="let summary of articleSummaryByTagPath">
-                    <a [routerLink]="['/articles', summary.id]">{{summary.title}}</a>
+                    
+                    <a [routerLink]="['/' + summary.path + '/articles', summary.id]">
+                        <img src="{{summary.headerImage}}" alt="article main image" style="width: 350px;" /><br/>
+                        {{summary.title}}
+                    </a>
                 </li>
         </ul>
         <footer>
-            <a href="#" class="button alt">Ipsum consequat</a>
+            <a [routerLink]="'/' + tagPath" class="button alt">View more</a>
         </footer>
     </section>
 

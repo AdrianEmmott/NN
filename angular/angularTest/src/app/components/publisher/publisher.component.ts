@@ -103,16 +103,16 @@ export class PublisherComponent implements OnInit {
   upsertArticleClick() {
     const articleTags = new ArticleTagModel();
 
+    console.log(this.article);
+
     if (this.article.id > 0) {
       this.articlePublisherService.updateArticle(this.article);
       articleTags.articleId = this.article.id;
       articleTags.tagIds = this.article.tagIds;
       this.tagService.updateArticleTags(articleTags);
     } else {
-      // this.article.id = this.articlePublisherService.createArticle(this.article);
       this.articlePublisherService.createArticle(this.article).subscribe(response => {
         this.article.id = response.result;
-        // console.log(this.article.id);
         articleTags.articleId = this.article.id;
         articleTags.tagIds = this.article.tagIds;
         this.tagService.createArticleTags(articleTags);

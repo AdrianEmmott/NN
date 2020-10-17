@@ -79,12 +79,20 @@ namespace webApi.Services
 
         public List<string> TagPathToTagPathList(string tagPath)
         {
-            List<string> tagPaths = tagPath.ToString().Split(',').ToList();
-            return tagPaths;
+            if(!string.IsNullOrWhiteSpace(tagPath)) {
+                List<string> tagPaths = tagPath.ToString().Split(',').ToList();
+                return tagPaths;
+            }
+            
+            return null;
         }
 
         public string SetTagPath(List<string> tagPaths)
         {
+            if (tagPaths == null) {
+                return null ;
+            }
+
             string tagPath = tagPaths.Count == 1 ?
                 tagPaths.FirstOrDefault() : string.Join("/", tagPaths);
 

@@ -1,4 +1,3 @@
 <section class="my-form" *ngIf="article">
-    <ckeditor id="editor" [editor]="Editor" [(ngModel)]="article.content" 
-    data="<p>Hello, world!</p>"></ckeditor>  
+    <ckeditor id="editor" [editor]="Editor" [config]="editorConfig" data="{{article.content}}" [(ngModel)]="article.content" ></ckeditor>
 </section>

@@ -30,5 +30,8 @@ namespace webApi.Models
 
         [JsonProperty("headerImage")]
         public string HeaderImage { get; set; }
+
+        [JsonProperty("path")]
+        public string Path { get; set; }
     }
 }

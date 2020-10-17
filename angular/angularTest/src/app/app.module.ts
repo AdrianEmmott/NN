@@ -7,20 +7,18 @@ import { AppComponent } from './components/app.component';
 
 import { FormsModule  } from '@angular/forms';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 import { MaterialModule } from './material.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-//import { MatMomentDateModule } from "@angular/material.core";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-//import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 import { PublisherComponent } from './components/publisher/publisher.component';
 import { PublisherStep1Component } from './components/publisher/publisher-step1/publisher-step1.component';
@@ -43,8 +41,9 @@ import { ArticleMetadataComponent } from './components/article/article-metadata/
 import { LanderComponent } from './components/lander/lander.component';
 import { DynamicRoutes} from './dynamic-routes';
 
-
-// import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { NoSanitizePipe } from './no-sanitize-pipe';
+import { PublisherStep6Component } from './components/publisher/publisher-step6/publisher-step6.component';
+import { PublisherStep3Component } from './components/publisher/publisher-step3/publisher-step3.component';
 
 
 @NgModule({
@@ -67,7 +66,10 @@ import { DynamicRoutes} from './dynamic-routes';
     ArticleSidebarComponent,
     ArticleBodyComponent,
     ArticleMetadataComponent,
-    LanderComponent
+    LanderComponent,
+    NoSanitizePipe,
+    PublisherStep6Component,
+    PublisherStep3Component
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,7 @@ import { DynamicRoutes} from './dynamic-routes';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    //CKEditorModule,    
+    CKEditorModule,    
 
     MaterialModule,
     MatDatepickerModule, 
@@ -86,7 +88,11 @@ import { DynamicRoutes} from './dynamic-routes';
     MatIconModule,
     MatProgressSpinnerModule,
     MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule, 
+    //NoSanitizePipe
+  ],
+  exports: [
+    NoSanitizePipe
   ],
   entryComponents: [
     LanderComponent

@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 using webApi.Contracts;
 using webApi.CustomBinders;
 using webApi.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace webapi
 {
@@ -37,17 +39,23 @@ namespace webapi
                     .AllowAnyHeader();
             }));
 
-            // services.AddMvc(options =>
-            // {
-            //     // add custom binder to beginning of collection
-            //     // options.ModelBinderProviders.Insert(0, new CustomBinderProvider());
-            // });
+            services.AddMvc(options =>
+            {
+                // add custom binder to beginning of collection
+                // options.ModelBinderProviders.Insert(0, new CustomBinderProvider());                
+            });
+
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.MaxRequestBodySize = int.MaxValue;
+            });
 
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IArticlePublisherService, ArticlePublisherService>();
             services.AddScoped<ITagService, TagService>();
 
             services.AddMediatR(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,17 +67,20 @@ namespace webapi
             // }
 
             app.UseRouting();
-app.UseCors("MyPolicy");
+            app.UseCors("MyPolicy");
             //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
-            //app.UseAuthorization();
+            app.UseStaticFiles(new StaticFileOptions
+            {                
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "wwwroot\\uploads")),
+                RequestPath = "/wwwroot/uploads"
+            });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            
         }
     }
 }

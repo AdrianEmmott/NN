@@ -3,6 +3,7 @@ import { SafeHtml } from '@angular/platform-browser';
 export class Article {
     id: number;
     title: string;
+    headerImage: string;
     subtitle: string;
     summary: string;
     viewCount: number;
@@ -10,6 +11,7 @@ export class Article {
     author: string;
     publishDate: Date;
     tagIds: Array<number>;
+    attachments: Array<string> = new Array<string>();
   }
 
 export class ArticleSummary {
@@ -21,6 +23,7 @@ export class ArticleSummary {
     author: string;
     publishDate: Date;
     formattedPublishDate: string;
+    path: string;
   }
 
 export class TagModel {

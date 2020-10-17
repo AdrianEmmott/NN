@@ -1,0 +1,17 @@
+<!-- Content -->
+<article class="box post" *ngIf="article" style="background-color: azure;">
+    <a href="#" class="image featured" *ngIf="article.headerImage">
+        <img src="{{article.headerImage}}" alt="">
+    </a>
+    <header>
+        <h1>{{article.title}}</h1>
+        <p>{{article.subTitle}}</p>
+    </header>
+    <section [innerHTML]="article.content"></section>
+    <section id="attachments">
+        <header><h4>attachments</h4></header>
+        <li *ngFor="let attachment of article.attachments">
+            <a href="#">{{attachment}}</a>
+        </li>        
+    </section>
+</article>

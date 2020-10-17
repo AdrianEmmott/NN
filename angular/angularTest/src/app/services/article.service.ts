@@ -32,15 +32,8 @@ export class ArticleService {
   }
 
   public getArticlesSummaryByTagPath(tagPaths: Array<string>): Observable<Array<ArticleSummary>> {
-    // const tagPathsQueryString = '';
-
-    // tagPaths.forEach(tagPath => {
-    //   tagPathsQueryString.push(tagPath)
-    //   console.log(tagPath);
-    // });
-
-
-    console.log(tagPaths);
+    //console.log("in there - setting tag paths");
+    //console.log(tagPaths);
 
     const articleSummaries = this.httpClient
       .get<Array<ArticleSummary>>('https://localhost:8080/api/articles/summary/tagpaths?tags=' + tagPaths);

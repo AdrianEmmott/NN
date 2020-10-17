@@ -4,9 +4,14 @@
         <img src="{{article.headerImage}}" alt="">
     </a>
     <header>
-        <h1 class="mat-display-1">{{article.title}}</h1>
-        <!-- <h2>{{article.title}}</h2> -->
+        <h1>{{article.title}}</h1>
         <p>{{article.subTitle}}</p>
     </header>
-    <section [innerHTML]="article.content" class="mat-typography"></section>
+    <section [innerHTML]="article.content"></section>
+    <section id="attachments">
+        <header><h4>attachments</h4></header>
+        <li *ngFor="let attachment of article.attachments">
+            <a (click)="downloadFile(attachment)">{{attachment}}</a>
+        </li>        
+    </section>
 </article>

@@ -37,8 +37,12 @@ namespace webApi.Services
         {
             tagPath = _tagService.SetTagPath(_tagService.TagPathToTagPathList(tagPath));
 
-            return BuildArticleSummaryList(_tagService.FindTagByPath(tagPath),
-                                            _tagService.TagPathRootSearch(tagPath));
+            if (tagPath != null) {
+                return BuildArticleSummaryList(_tagService.FindTagByPath(tagPath),
+                                                _tagService.TagPathRootSearch(tagPath));
+            }
+
+            return null;
         }
 
         public List<ArticleSummaryModel> BuildArticleSummaryList(TagModel tag, bool rootSearch)
@@ -53,6 +57,10 @@ namespace webApi.Services
                 foreach (var articleSummary in summaryModel)
                 {
                     ArticleTagModel articleTags = _tagService.GetTagsByArticleId(articleSummary.Id);
+
+
+                    articleSummary.Path = tag.Path;
+
 
                     if (articleTags != null)
                     {

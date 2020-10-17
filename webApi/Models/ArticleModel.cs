@@ -7,6 +7,11 @@ namespace webApi.Models
 {
     public class ArticleModel
     {
+        public ArticleModel() 
+        {
+            Attachments = new List<string>();
+        }
+
         [JsonProperty("id")]
         public int Id { get; set; }
 
@@ -36,5 +41,8 @@ namespace webApi.Models
 
         [JsonProperty("tagIds")]
         public List<int> TagIds { get; set; }
+
+        [JsonProperty("attachments")]
+        public List<string> Attachments{ get; set; }
     }
 }
