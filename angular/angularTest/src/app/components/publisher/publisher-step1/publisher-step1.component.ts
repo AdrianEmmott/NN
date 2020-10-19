@@ -19,7 +19,7 @@ export class PublisherStep1Component implements OnInit {
   ngOnInit() {    
   }
 
-  csvInputChange(fileInputEvent: any) {
+  selectImage(fileInputEvent: any) {
     var file = fileInputEvent.target.files[0];
     console.log(file);
     
@@ -29,5 +29,9 @@ export class PublisherStep1Component implements OnInit {
       this.article.headerImage = result.url;
       console.log(this.article.headerImage);
     });
+  }
+
+  clearImage() {
+    this.article.headerImage = null;
   }
 }

@@ -7,3 +7,36 @@
     width: 63.66667%;
     float: right;
 }
+
+.main-image-container
+{
+     display: flex;
+    // flex-direction: row;
+    // justify-content: flex-start;
+
+    .image 
+    {
+        height: 350px;
+    }
+
+    .buttons 
+    {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+
+        .select-image 
+        {
+            height: 50px;
+            width: 170px;
+        }
+    
+        .clear-image 
+        {
+            height: 50px;
+            margin-top: 20px;
+            width: 170px;
+        }
+    }
+   
+}

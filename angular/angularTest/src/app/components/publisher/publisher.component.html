@@ -6,46 +6,46 @@
   <mat-horizontal-stepper *ngIf="article" (selectionChange)="getArticleData($event)">
     <mat-step label="Basic info" state="phone">
       <app-publisher-step1 [article]="article"></app-publisher-step1>
-      <div>
+      <div class="stepper-buttons-container">
         <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Content" state="chat">
       <app-publisher-step2 [article]="article"></app-publisher-step2>
-      <div>
+      <div class="stepper-buttons-container">
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Attachments">
-        <div>
-          <app-publisher-step3 [article]="article"></app-publisher-step3>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+      <app-publisher-step3 [article]="article"></app-publisher-step3>
+      <div class="stepper-buttons-container">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     </mat-step>
     <mat-step label="Preferences">
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+      <div class="stepper-buttons-container">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     </mat-step>
     <mat-step label="Location">
-        <div>
-          <app-publisher-step5 [article]="article"></app-publisher-step5>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+      <app-publisher-step5 [article]="article"></app-publisher-step5>
+      <div class="stepper-buttons-container">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
     </mat-step>
     <mat-step label="Preview">
       <h2>Ready to publish ></h2>
-      <div>
-        <app-publisher-step6 [article]="article"></app-publisher-step6>
+      <app-publisher-step6 [article]="article"></app-publisher-step6>
+      <div class="stepper-buttons-container">
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="upsertArticleClick()">Publish</button>
       </div>
     </mat-step>
-  
+
     <!-- Icon overrides. -->
     <ng-template matStepperIcon="phone">
       <mat-icon>call_end</mat-icon>

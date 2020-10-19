@@ -44,6 +44,7 @@ import { DynamicRoutes} from './dynamic-routes';
 import { NoSanitizePipe } from './no-sanitize-pipe';
 import { PublisherStep6Component } from './components/publisher/publisher-step6/publisher-step6.component';
 import { PublisherStep3Component } from './components/publisher/publisher-step3/publisher-step3.component';
+import { ArticleAttachmentsComponent } from './components/article/article-attachments/article-attachments.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { PublisherStep3Component } from './components/publisher/publisher-step3/
     LanderComponent,
     NoSanitizePipe,
     PublisherStep6Component,
-    PublisherStep3Component
+    PublisherStep3Component,
+    ArticleAttachmentsComponent
   ],
   imports: [
     BrowserModule,

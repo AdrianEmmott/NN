@@ -1,0 +1,6 @@
+<section id="attachments" *ngIf="article.attachments.length > 0">
+    <h4>attachments</h4>
+    <li *ngFor="let attachment of article.attachments">
+        <a (click)="downloadFile(attachment)">{{attachment}}</a>
+    </li>        
+</section>

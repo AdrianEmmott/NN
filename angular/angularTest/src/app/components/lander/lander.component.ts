@@ -29,7 +29,7 @@ export class LanderComponent implements OnInit {
 
   ngOnInit() {
     this.getArticlesSummary(this.router.url);
-    this.pageTitle = this.router.url.replaceAll('-', ' ');
+    //this.pageTitle = this.router.url.replaceAll('-', ' ');
     console.log(this.pageTitle);
   }
 

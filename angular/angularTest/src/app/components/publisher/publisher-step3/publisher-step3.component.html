@@ -1,11 +1,9 @@
-<section id="attachments">
-    <header><h4>attachments</h4></header>
-    <li *ngFor="let attachment of article.attachments">
-        <a href="#">{{attachment}}</a>
-    </li>        
-</section>
+<app-article-attachments [article]="article"></app-article-attachments>
 
 <input #fileInput hidden="true" type="file" onclick="this.value=null" 
             (change)="fileUpload($event)" accept=".txt,.pdf"/>
 
-<button mat-flat-button color="secondary" (click)="fileInput.click()">Upload file</button>
+
+<div class="upload-button-container">
+    <button mat-raised-button class="mat-focus-indicator mat-raised-button mat-button-base" (click)="fileInput.click()">Upload file</button>
+</div>

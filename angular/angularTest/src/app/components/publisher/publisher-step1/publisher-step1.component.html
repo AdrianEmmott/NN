@@ -1,34 +1,46 @@
 <section class="my-form" *ngIf="article">
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Title" [(ngModel)]="article.title" name="title" required>
-        </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Title" [(ngModel)]="article.title" name="title" required>
+    </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Subtitle" [(ngModel)]="article.subTitle" name="subtitle">
-        </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Subtitle" [(ngModel)]="article.subTitle" name="subtitle">
+    </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Summary - this will appear on summary pages across the site" 
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Summary - this will appear on summary pages across the site"
             [(ngModel)]="article.summary" name="summary">
-        </mat-form-field>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Author" [(ngModel)]="article.author" name="author" required>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <input matInput [matDatepicker]="publihDatePicker" placeholder="Publish date" [(ngModel)]="article.publishDate"
+            name="publishDate" required>
+        <mat-datepicker-toggle matSuffix [for]="publihDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #publihDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <label>Article main image</label>    
+    <section class="main-image-container">
         
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Author" [(ngModel)]="article.author" name="author" required>
-        </mat-form-field>
+        <img class="image" src="../../../../assets/images/no-image.jpg" 
+        alt="article main image" *ngIf="!article.headerImage" />
+        <img class="image" src="{{article.headerImage}}" alt="article main image"
+        *ngIf="article.headerImage" />
 
-        <mat-form-field class="full-width">
-            <input matInput [matDatepicker]="publihDatePicker" placeholder="Publish date" 
-                [(ngModel)]="article.publishDate" name="publishDate" required>
-            <mat-datepicker-toggle matSuffix [for]="publihDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #publihDatePicker></mat-datepicker>
-        </mat-form-field>
+        <input #selectMainImage hidden="true" type="file" onclick="this.value=null" (change)="selectImage($event)"
+            accept=".jpg,.png" />
 
-        
-        <img src="{{article.headerImage}}" alt="article main image" style="height: 350px;" />
-        
-
-        <input #csvInput hidden="true" type="file" onclick="this.value=null" 
-            (change)="csvInputChange($event)" accept=".jpg,.png"/>
-
-        <button mat-flat-button color="secondary" (click)="csvInput.click()">Select main image</button>
+        <section class="buttons">
+            <button mat-raised-button
+                class="mat-focus-indicator mat-raised-button mat-button-base mat-primary select-image"
+                (click)="selectMainImage.click()">Select main image</button>
+            <button mat-raised-button
+                class="mat-focus-indicator mat-raised-button mat-button-base mat-warn clear-image"
+                (click)="clearImage()">No main image</button>
+        </section>
+    </section>
 </section>

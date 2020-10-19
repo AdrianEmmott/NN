@@ -3,7 +3,7 @@
     <section class="article-summary clearfix" *ngFor="let article of articleSummaryByTagPath">
         <a [routerLink]="[router.url + '/articles', article.id]">
             <section class="publish-date">{{ article.formattedPublishDate.toUpperCase() }}</section>
-            <img class="image" src="{{ article.headerImage }}" alt="{{ article.title }}" /></a>
+            <img class="image" src="{{ article.headerImage }}" alt="{{ article.title }}" *ngIf="article.headerImage !== null" /></a>
         <a class="title" [routerLink]="[router.url + '/articles', article.id]">{{ article.title }}</a>
         <p class="summary-text">{{ article.summary }}</p>
     </section>
