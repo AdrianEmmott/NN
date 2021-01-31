@@ -1,0 +1,12 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "BaseUrl":"http://localhost:8090/",
+  "APIUrl": "http://localhost:8090/api/",
+  "ExportFileLocation": "\\\\ukfiler\\NDrive\\Apps\\AwardperQs\\Data\\DataStore\\RawData\\DevExport\\InvoiceBackupFiles\\",
+  "ArchiveFileLocation": "\\\\ukfiler\\NDrive\\Apps\\AwardperQs\\Data\\DataStore\\RawData\\DevExport\\InvoiceBackupFiles\\Archive\\"
+}

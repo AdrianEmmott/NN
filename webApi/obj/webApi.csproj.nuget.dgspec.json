@@ -1,29 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adria\\Documents\\NN\\webApi\\webApi.csproj": {}
+    "C:\\Development\\NN\\webapi\\webApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adria\\Documents\\NN\\webApi\\webApi.csproj": {
+    "C:\\Development\\NN\\webapi\\webApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adria\\Documents\\NN\\webApi\\webApi.csproj",
+        "projectUniqueName": "C:\\Development\\NN\\webapi\\webApi.csproj",
         "projectName": "webApi",
-        "projectPath": "C:\\Users\\adria\\Documents\\NN\\webApi\\webApi.csproj",
-        "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adria\\Documents\\NN\\webApi\\obj\\",
+        "projectPath": "C:\\Development\\NN\\webapi\\webApi.csproj",
+        "packagesPath": "C:\\Users\\aemmott\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\NN\\webapi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Development\\NN\\webapi\\NuGet.Config",
+          "C:\\Users\\aemmott\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.corp.biworldwide.com/nuget/BIW.CodeLibrary": {},
+          "http://nuget.corp.biworldwide.com/nuget/BIW.ElmahCore.ElasticSearch/": {},
+          "http://nuget.corp.biworldwide.com/nuget/biw.nexus.uk": {},
+          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -35,6 +46,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -42,7 +54,7 @@
             },
             "MediatR": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -71,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-publisher',
   templateUrl: './publisher.component.html',
@@ -47,6 +46,8 @@ export class PublisherComponent implements OnInit {
 
         this.articleObservable$.subscribe((article: Article) => {
           this.article = article;
+
+          this.article.headerImage = this.articleService.appendApiUrlToHeaderImage(this.article.headerImage);
           // console.log(this.article);
 
           if (this.article != null) {
@@ -102,8 +103,6 @@ export class PublisherComponent implements OnInit {
 
   upsertArticleClick() {
     const articleTags = new ArticleTagModel();
-
-    console.log(this.article);
 
     if (this.article.id > 0) {
       this.articlePublisherService.updateArticle(this.article);

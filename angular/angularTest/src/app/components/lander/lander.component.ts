@@ -4,8 +4,7 @@ import { TagService } from '../../services/tag.service';
 import { ArticleService } from '../../services/article.service';
 import { TagModel, ArticleSummary } from '../../models/article.models';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
+import { AppSettingsService } from '../../services/app-settings.service';
 
 @Component({
   selector: 'app-lander',
@@ -17,7 +16,8 @@ export class LanderComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private articleService: ArticleService,
-              private tagService: TagService) { }
+              private tagService: TagService
+              , private appSettingsService: AppSettingsService) { }
 
   public tagObservable$: Observable<Array<TagModel>>;
   public tags: Array<TagModel>;
@@ -50,8 +50,10 @@ export class LanderComponent implements OnInit {
 
     this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(urlSegmentsArr);
 
-    this.articleSummaryByTagPath$.subscribe((summary: Array<ArticleSummary>) => {
-      this.articleSummaryByTagPath = summary;
+    this.articleSummaryByTagPath$.subscribe((response: Array<ArticleSummary>) => {
+      console.log(response);
+      response = this.articleService.appendApiUrlToHeaderImage_articleSummaryList(response) ;
+      this.articleSummaryByTagPath = response;
     });
   }
 }

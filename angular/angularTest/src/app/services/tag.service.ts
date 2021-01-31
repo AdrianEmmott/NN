@@ -2,30 +2,35 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { TagModel, ArticleTagModel } from '../models/article.models';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AppSettingsService } from './app-settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagService {
+  controllerName: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient
+    , private appSettingsService: AppSettingsService) {
+      //this.controllerName = this.appSettingsService.apiUrl + 'tags';
+      this.controllerName = 'http://localhost:8090/api/tags';
+    }
 
   public getTags(): Observable<TagModel[]> {
     const article = this.httpClient
-      .get<TagModel[]>('https://localhost:8080/api/tags/all/tree');
+      .get<TagModel[]>(this.controllerName + '/all/tree');
     return article;
   }
 
   public getTagsFlattened(): Observable<TagModel[]> {
     const article = this.httpClient
-      .get<TagModel[]>('https://localhost:8080/api/tags/all/flattened');
+      .get<TagModel[]>(this.controllerName + '/all/flattened');
     return article;
   }
 
   public getTagsByArticleId(id: number): Observable<ArticleTagModel> {
     const articleTags = this.httpClient
-      .get<ArticleTagModel>('https://localhost:8080/api/tags/article/' + id);
+      .get<ArticleTagModel>(this.controllerName + '/article/' + id);
     return articleTags;
   }
 
@@ -35,7 +40,7 @@ export class TagService {
 
     console.log(articleTags);
 
-    this.httpClient.post('https://localhost:8080/api/tags/create-article-tags'
+    this.httpClient.post(this.controllerName + '/create-article-tags'
       , articleTags
       , { headers: myHeaders })
       .subscribe();
@@ -44,13 +49,9 @@ export class TagService {
   public updateArticleTags(articleTags: ArticleTagModel) {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
-    ///myHeaders.set('Content-Type', 'text/plain');
 
-console.log(articleTags) ;
-
-    this.httpClient.post('https://localhost:8080/api/tags/update-article-tags'
+    this.httpClient.post(this.controllerName + '/update-article-tags'
       , articleTags
-      //, JSON.stringify('Test')
       , { headers: myHeaders }
       )
       .subscribe();

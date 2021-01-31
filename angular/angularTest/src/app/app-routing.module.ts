@@ -23,8 +23,8 @@ export class AppRoutingModule {
   public tagsObservable$: Observable<TagModel[]>;
   public tags: TagModel[];
 
-  constructor(private tagService: TagService,
-              private router: Router) {
+  constructor(private tagService: TagService
+              , private router: Router) {
     this.tagsObservable$ = this.tagService.getTagsFlattened();
 
     const dynamicRoutes = routes;
@@ -41,7 +41,6 @@ export class AppRoutingModule {
 
       this.router.resetConfig(dynamicRoutes);
       this.router.onSameUrlNavigation = 'reload';
-      // console.log(routes);
     });
   }
 }

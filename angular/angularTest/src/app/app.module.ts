@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +46,7 @@ import { PublisherStep6Component } from './components/publisher/publisher-step6/
 import { PublisherStep3Component } from './components/publisher/publisher-step3/publisher-step3.component';
 import { ArticleAttachmentsComponent } from './components/article/article-attachments/article-attachments.component';
 
+import { AppSettingsService } from './services/app-settings.service';
 
 @NgModule({
   declarations: [
@@ -79,10 +80,10 @@ import { ArticleAttachmentsComponent } from './components/article/article-attach
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    CKEditorModule,    
+    CKEditorModule,
 
     MaterialModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
     MatStepperModule,
@@ -90,7 +91,7 @@ import { ArticleAttachmentsComponent } from './components/article/article-attach
     MatIconModule,
     MatProgressSpinnerModule,
     MatTreeModule,
-    MatCheckboxModule, 
+    MatCheckboxModule,
     //NoSanitizePipe
   ],
   exports: [
@@ -99,7 +100,20 @@ import { ArticleAttachmentsComponent } from './components/article/article-attach
   entryComponents: [
     LanderComponent
   ],
-  providers: [DynamicRoutes],
+  providers: [
+    DynamicRoutes
+    , {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [AppSettingsService],
+      useFactory: (appSettingsService: AppSettingsService) => {
+        return () => {
+          console.log("COME ON");
+          //Make sure to return a promise!
+          return appSettingsService.loadAppConfig();
+        };
+      }
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

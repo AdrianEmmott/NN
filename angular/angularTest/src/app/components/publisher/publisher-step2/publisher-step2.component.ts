@@ -15,7 +15,7 @@ import * as CEditor from 'src/assets/my-ckeditor-build/ckeditor.js';
 export class PublisherStep2Component implements OnInit {
   constructor(private articleService: ArticleService,
     private articlePublisherService: ArticlePublisherService,
-    ) { 
+    ) {
     }
 
 
@@ -29,7 +29,7 @@ export class PublisherStep2Component implements OnInit {
 
   public editorConfig = {
     simpleUpload: {
-      uploadUrl: 'https://localhost:8080/api/file-manager/upload/image',
+      uploadUrl: 'https://localhost:8090/api/file-manager/upload/image',
       withCredentials: false,
        headers: {
          //'X-CSRF-TOKEN': 'CSFR-Token',

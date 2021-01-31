@@ -16,13 +16,13 @@ export class PublisherStep1Component implements OnInit {
   constructor(private imageUploadService: ImageUploadService) {
   }
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
   selectImage(fileInputEvent: any) {
     var file = fileInputEvent.target.files[0];
     console.log(file);
-    
+
     let upload$ = this.imageUploadService.setImageMainArticle(file);
     upload$.subscribe((result: any) => {
       console.log(result);

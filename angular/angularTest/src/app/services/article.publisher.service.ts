@@ -4,13 +4,18 @@ import { Article, ArticleSummary } from '../models/article.models';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { CreateArticleResponseModel } from '../models/response.model';
+import { AppSettingsService } from './app-settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticlePublisherService {
+  controllerName: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient
+    , private appSettingsService: AppSettingsService) {
+      this.controllerName = this.appSettingsService.apiUrl + 'publisher'
+    }
 
   public upsertArticle(article: Article) {
     if (article.id === 0) {
@@ -24,7 +29,7 @@ export class ArticlePublisherService {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
 
-    return this.httpClient.post<CreateArticleResponseModel>('https://localhost:8080/api/publisher/create-article'
+    return this.httpClient.post<CreateArticleResponseModel>(this.controllerName + '/create-article'
       , article
       , { headers: myHeaders }).pipe(tap());
   }
@@ -33,7 +38,7 @@ export class ArticlePublisherService {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/json');
 
-    this.httpClient.post('https://localhost:8080/api/publisher/update-article'
+    this.httpClient.post(this.controllerName + '/update-article'
       , article
       , { headers: myHeaders })
       .subscribe();

@@ -39,6 +39,7 @@ export class ArticleComponent implements OnInit {
 
     this.articleObservable$.subscribe((article: Article) => {
       this.article = article;
+      this.article = this.articleService.appendApiUrlToHeaderImage_article(this.article);
       // this.safeContent = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
       // console.log(this.safeContent);
       }

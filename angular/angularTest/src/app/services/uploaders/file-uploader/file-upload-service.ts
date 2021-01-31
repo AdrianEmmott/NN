@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { AppSettingsService } from '../../app-settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
+  controllerName: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient
+    , private appSettingsService: AppSettingsService) {
+      this.controllerName = this.appSettingsService.apiUrl + 'file-manager';
+    }
 
   uploadFile(file: File): Observable<any> {
     const myHeaders = new HttpHeaders();
@@ -17,7 +21,7 @@ export class FileUploadService {
     const formData: FormData = new FormData();
     formData.append('fileKey', file, file.name);
 
-    return this.httpClient.post('https://localhost:8080/api/file-manager/upload/file'
+    return this.httpClient.post(this.controllerName + '/upload/file'
       , formData
       , { headers: myHeaders }
       );
@@ -27,9 +31,6 @@ export class FileUploadService {
     const myHeaders = new HttpHeaders();
     myHeaders.set('Content-Type', 'application/octet-stream');
 
-    //const formData: FormData = new FormData();
-    //formData.append('fileKey', file, file.name);
-
-    return this.httpClient.get('https://localhost:8080/api/file-manager/download/file?link=' + url, { responseType: 'blob'});
+    return this.httpClient.get(this.controllerName + '/download/file?link=' + url, { responseType: 'blob'});
   }
 }
