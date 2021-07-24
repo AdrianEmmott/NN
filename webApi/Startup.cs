@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using webApi.Contracts;
 using webApi.CustomBinders;
+using webApi.Models.SiteSettings;
 using webApi.Services;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
@@ -21,12 +22,15 @@ namespace webapi
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+
+        public IConfiguration SiteSettingsConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -56,6 +60,8 @@ namespace webapi
 
             services.AddMediatR(typeof(Startup));
 
+            var siteSettingsConfig = Configuration.GetSection("SiteSettings");//.Get<SiteSettingsModel>();
+            services.Configure<SiteSettingsModel>(siteSettingsConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,9 +69,9 @@ namespace webapi
         {
             app.UseRouting();
             app.UseCors("MyPolicy");
-            
+
             app.UseStaticFiles(new StaticFileOptions
-            {                
+            {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(env.ContentRootPath, "wwwroot/uploads")),
                 RequestPath = "/wwwroot/uploads"

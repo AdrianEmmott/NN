@@ -7,20 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 using webApi.Models;
 using webApi.Contracts;
 using webApi.Services;
+//using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using webApi.Models.SiteSettings;
 
 namespace webApi.Controllers
 {
     [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticlesController : ControllerBase
+    public class ArticlesController : BaseController
     {
         private readonly IArticleService _articleService;
 
-        public ArticlesController(IArticleService articleService)
-        {
-            _articleService = articleService;
-        }
+        public ArticlesController(IArticleService articleService,
+            IOptions<SiteSettingsModel> siteSettings)
+            : base(siteSettings) 
+            => _articleService = articleService;
 
         // GET api/values
         [HttpGet]
@@ -33,16 +36,18 @@ namespace webApi.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
+            var xxx = base.SiteSettings;
+
             var model = _articleService.GetArticle(id);
-            return Ok(model); 
-         }
+            return Ok(model);
+        }
 
         // GET api/articles/summary
         [HttpGet("summary")]
         public ActionResult GetArticlesSummary(int id)
         {
-             var model = _articleService.GetArticlesSummary();
-             return Ok(model); 
+            var model = _articleService.GetArticlesSummary();
+            return Ok(model);
         }
 
         [HttpGet("summary/tagpaths")]
