@@ -68,6 +68,15 @@ export class ArticleSidebarComponent implements OnInit {
     this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(urlSegmentsArr);
 
     this.articleSummaryByTagPath$.subscribe((summary: Array<ArticleSummary>) => {
+<<<<<<< HEAD
+=======
+      summary.forEach(x=>{
+        x.headerImage = 
+        this.articleService.appendApiUrlToHeaderImage(x.headerImage);});
+
+        console.log(summary);
+
+>>>>>>> sss
       this.articleSummaryByTagPath = summary;
     });
   }

@@ -1,0 +1,51 @@
+[
+  {
+    "articleId": 1,
+    "tagIds": [
+      13
+    ],
+    "tags": []
+  },
+  {
+    "articleId": 2,
+    "tagIds": [
+      11,
+      13,
+      14,
+      4,
+      5
+    ],
+    "tags": []
+  },
+  {
+    "articleId": 3,
+    "tagIds": [
+      3,
+      8
+    ],
+    "tags": []
+  },
+  {
+    "articleId": 4,
+    "tagIds": [
+      12,
+      60
+    ],
+    "tags": []
+  },
+  {
+    "articleId": 5,
+    "tagIds": [
+      1,
+      11,
+      12,
+      13,
+      14,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tags": []
+  }
+]

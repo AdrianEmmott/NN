@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Development\\NN\\webapi\\webApi.csproj": {}
   },
   "projects": {
@@ -29,12 +30,39 @@
           "http://nuget.corp.biworldwide.com/nuget/BIW.CodeLibrary": {},
           "http://nuget.corp.biworldwide.com/nuget/BIW.ElmahCore.ElasticSearch/": {},
           "http://nuget.corp.biworldwide.com/nuget/biw.nexus.uk": {},
+=======
+    "/home/adrianemmott/NN/webApi/webApi.csproj": {}
+  },
+  "projects": {
+    "/home/adrianemmott/NN/webApi/webApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/adrianemmott/NN/webApi/webApi.csproj",
+        "projectName": "webApi",
+        "projectPath": "/home/adrianemmott/NN/webApi/webApi.csproj",
+        "packagesPath": "/home/adrianemmott/.nuget/packages/",
+        "outputPath": "/home/adrianemmott/NN/webApi/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/adrianemmott/NN/webApi/nuget.config",
+          "/home/adrianemmott/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+>>>>>>> sss
           "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
+<<<<<<< HEAD
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
+=======
+          "net5.0": {
+            "targetAlias": "net5.0",
+>>>>>>> sss
             "projectReferences": {}
           }
         },
@@ -45,8 +73,13 @@
         }
       },
       "frameworks": {
+<<<<<<< HEAD
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+=======
+        "net5.0": {
+          "targetAlias": "net5.0",
+>>>>>>> sss
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -83,7 +116,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
+>>>>>>> sss
         }
       }
     }

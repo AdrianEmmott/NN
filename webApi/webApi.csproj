@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
+<<<<<<< HEAD
     <TargetFramework>netcoreapp3.1</TargetFramework>
+=======
+    <TargetFramework>net5.0</TargetFramework>
+>>>>>>> sss
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="8.0.0"/>

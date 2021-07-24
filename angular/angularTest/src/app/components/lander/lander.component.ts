@@ -26,11 +26,46 @@ export class LanderComponent implements OnInit {
   private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
   private articleSummaryByTagPath: Array<ArticleSummary>;
   private urlSegments: Array<UrlSegment>;
+<<<<<<< HEAD
 
   ngOnInit() {
     this.getArticlesSummary(this.router.url);
     //this.pageTitle = this.router.url.replaceAll('-', ' ');
     console.log(this.pageTitle);
+=======
+  urlSegmentsArr = new Array<string>();
+    
+
+
+  ngOnInit() {
+    this.getArticlesSummary(this.router.url);
+    
+    this.pageTitle = this.router.url;
+//debugger;
+    const tree: UrlTree = this.router.parseUrl(this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    this.urlSegments = g.segments;
+    // console.log(this.urlSegments);
+
+    var previousSegment: string = "";
+    
+    this.urlSegments.forEach(segment => {        
+        if (previousSegment.length) {
+          this.urlSegmentsArr.push("/" + previousSegment + "/" + segment.path);
+          previousSegment += "/" + segment.path;
+        }
+        else {
+          this.urlSegmentsArr.push("/" + segment.path);
+          previousSegment = segment.path;
+        }
+    });
+
+    console.log(this.urlSegmentsArr);
+
+
+
+    //console.log(this.pageTitle);
+>>>>>>> sss
   }
 
   getArticlesSummary(tagPath: string) {
@@ -46,12 +81,20 @@ export class LanderComponent implements OnInit {
         // console.log(urlSegmentsArr);
     });
 
+<<<<<<< HEAD
     console.log(urlSegmentsArr);
+=======
+    //console.log(urlSegmentsArr);
+>>>>>>> sss
 
     this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(urlSegmentsArr);
 
     this.articleSummaryByTagPath$.subscribe((response: Array<ArticleSummary>) => {
+<<<<<<< HEAD
       console.log(response);
+=======
+      //console.log(response);
+>>>>>>> sss
       response = this.articleService.appendApiUrlToHeaderImage_articleSummaryList(response) ;
       this.articleSummaryByTagPath = response;
     });

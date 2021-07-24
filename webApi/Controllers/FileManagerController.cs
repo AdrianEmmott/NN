@@ -74,11 +74,17 @@ public class FileManagerController : Controller
                         file.CopyTo(output);
                     }
 
+<<<<<<< HEAD
                     var returnedFilename = $"https://localhost:8080/wwwroot/{uploadPath}/{formattedFilename}" ;
+=======
+                    
+                    var returnedFilename = $"http://localhost:8090/wwwroot/{uploadPath}/{formattedFilename}" ;
+>>>>>>> sss
 
                     return Ok(new {url = returnedFilename});
                 }
             }
+<<<<<<< HEAD
             else
             {
 
@@ -86,6 +92,10 @@ public class FileManagerController : Controller
 
             return BadRequest();
 
+=======
+
+            return BadRequest();
+>>>>>>> sss
         }
         catch (Exception ex)
         {

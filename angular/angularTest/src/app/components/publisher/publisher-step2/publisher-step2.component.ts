@@ -5,8 +5,11 @@ import { Article } from '../../../models/article.models';
 
 import * as CEditor from 'src/assets/my-ckeditor-build/ckeditor.js';
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> sss
 @Component({
   selector: 'app-publisher-step2',
   templateUrl: './publisher-step2.component.html',
@@ -15,21 +18,32 @@ import * as CEditor from 'src/assets/my-ckeditor-build/ckeditor.js';
 export class PublisherStep2Component implements OnInit {
   constructor(private articleService: ArticleService,
     private articlePublisherService: ArticlePublisherService,
+<<<<<<< HEAD
     ) {
     }
 
+=======
+    ) {}
+>>>>>>> sss
 
   ngOnInit() {
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> sss
   @Input() article: Article;
 
   public Editor = CEditor;
 
   public editorConfig = {
     simpleUpload: {
+<<<<<<< HEAD
       uploadUrl: 'https://localhost:8090/api/file-manager/upload/image',
+=======
+      uploadUrl: 'http://localhost:8090/api/file-manager/upload/image',
+>>>>>>> sss
       withCredentials: false,
        headers: {
          //'X-CSRF-TOKEN': 'CSFR-Token',

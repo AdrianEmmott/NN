@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <section id="attachments" *ngIf="article.attachments.length > 0">
+=======
+<section id="attachments" *ngIf="article.attachments !== undefined && article.attachments.length > 0">
+>>>>>>> sss
     <h4>attachments</h4>
     <li *ngFor="let attachment of article.attachments">
         <a (click)="downloadFile(attachment)">{{attachment}}</a>
