@@ -1,8 +1,8 @@
 <!-- Content -->
 <article class="box post" *ngIf="article">
-    <a href="#" class="image featured" *ngIf="article.headerImage">
+    <section class="image featured" *ngIf="article.headerImage">
         <img src="{{article.headerImage}}" alt="">
-    </a>
+    </section>
     <header>
         <h1>{{article.title}}</h1>
         <p>{{article.subTitle}}</p>
