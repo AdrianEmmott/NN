@@ -24,11 +24,6 @@ export class AppSettingsService {
         this.exportFileLocation = data["ExportFileLocation"];
         this.archiveFileLocation = data["ArchiveFileLocation"];
         this.downloadLocation = data["DownloadLocation"];
-<<<<<<< HEAD
-        console.log(this.apiUrl);
-=======
-        //console.log(this.apiUrl);
->>>>>>> sss
       });
   }
 }

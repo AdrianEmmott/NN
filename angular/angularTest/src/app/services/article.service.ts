@@ -12,11 +12,6 @@ export class ArticleService {
 
   constructor(private httpClient: HttpClient
     ,  private appSettingsService: AppSettingsService) {
-<<<<<<< HEAD
-      console.log(this.appSettingsService.apiUrl);
-=======
-      //console.log(this.appSettingsService.apiUrl);
->>>>>>> sss
       this.controllerName = this.appSettingsService.apiUrl + 'articles';
     }
 
@@ -55,20 +50,12 @@ export class ArticleService {
   }
 
   appendApiUrlToHeaderImage(headerImage: string) : string {
-<<<<<<< HEAD
-    headerImage = this.appSettingsService.baseUrl + headerImage;
-    headerImage =headerImage.replace("//wwwroot","/wwwroot");
 
-=======
     if (!headerImage.includes(this.appSettingsService.baseUrl)) {
       headerImage = this.appSettingsService.baseUrl + headerImage;
     }
 
     headerImage = headerImage.replace("//wwwroot","/wwwroot");
-    
-    //console.log(headerImage);
-    
->>>>>>> sss
     return headerImage;
   }
 }

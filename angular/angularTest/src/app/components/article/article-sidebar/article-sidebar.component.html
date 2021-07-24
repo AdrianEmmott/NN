@@ -1,19 +1,11 @@
 <section class="box" *ngIf="articleSummaryByTagPath">
         <header>
-<<<<<<< HEAD
-            <h3>More from: {{ tagPath }}</h3>
-=======
             <h3 removeSlashesAndDashes>More from: {{ tagPath }}</h3>
->>>>>>> sss
         </header>
         <ul class="divided">
                 <li *ngFor="let summary of articleSummaryByTagPath">                    
                     <a [routerLink]="['/' + summary.path + '/articles', summary.id]">
-<<<<<<< HEAD
-                        <img src="{{summary.headerImage}}" alt="article main image" style="width: 370px;" /><br/>
-=======
                         <img src="{{summary.headerImage}}" alt="article main image" style="width: 315px;" /><br/>
->>>>>>> sss
                         {{summary.title}}
                     </a>
                 </li>

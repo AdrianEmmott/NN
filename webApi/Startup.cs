@@ -61,21 +61,6 @@ namespace webapi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-<<<<<<< HEAD
-            // if (env.IsDevelopment())
-            // {
-            //     app.UseDeveloperExceptionPage();
-            // }
-
-            app.UseRouting();
-            app.UseCors("MyPolicy");
-            //app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
-
-            app.UseStaticFiles(new StaticFileOptions
-            {                
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "wwwroot\\uploads")),
-=======
             app.UseRouting();
             app.UseCors("MyPolicy");
             
@@ -83,7 +68,6 @@ namespace webapi
             {                
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(env.ContentRootPath, "wwwroot/uploads")),
->>>>>>> sss
                 RequestPath = "/wwwroot/uploads"
             });
 
@@ -93,8 +77,4 @@ namespace webapi
             });
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> sss

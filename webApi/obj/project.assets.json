@@ -1,11 +1,7 @@
 {
   "version": 3,
   "targets": {
-<<<<<<< HEAD
-    ".NETCoreApp,Version=v3.1": {
-=======
     "net5.0": {
->>>>>>> sss
       "AutoMapper/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -928,11 +924,7 @@
     }
   },
   "projectFileDependencyGroups": {
-<<<<<<< HEAD
-    ".NETCoreApp,Version=v3.1": [
-=======
     "net5.0": [
->>>>>>> sss
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 7.0.0",
       "MediatR >= 8.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 8.0.0",
@@ -940,45 +932,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\aemmott\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
-=======
     "/home/adrianemmott/.nuget/packages/": {}
->>>>>>> sss
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Development\\NN\\webapi\\webApi.csproj",
-      "projectName": "webApi",
-      "projectPath": "C:\\Development\\NN\\webapi\\webApi.csproj",
-      "packagesPath": "C:\\Users\\aemmott\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\NN\\webapi\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "C:\\Development\\NN\\webapi\\NuGet.Config",
-        "C:\\Users\\aemmott\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-      ],
-      "originalTargetFrameworks": [
-        "netcoreapp3.1"
-      ],
-      "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://nuget.corp.biworldwide.com/nuget/BIW.CodeLibrary": {},
-        "http://nuget.corp.biworldwide.com/nuget/BIW.ElmahCore.ElasticSearch/": {},
-        "http://nuget.corp.biworldwide.com/nuget/biw.nexus.uk": {},
-        "https://api.nuget.org/v3/index.json": {}
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-=======
       "projectUniqueName": "/home/adrianemmott/NN/webApi/webApi.csproj",
       "projectName": "webApi",
       "projectPath": "/home/adrianemmott/NN/webApi/webApi.csproj",
@@ -998,7 +956,6 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
->>>>>>> sss
           "projectReferences": {}
         }
       },
@@ -1009,13 +966,8 @@
       }
     },
     "frameworks": {
-<<<<<<< HEAD
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
-=======
       "net5.0": {
         "targetAlias": "net5.0",
->>>>>>> sss
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
@@ -1052,11 +1004,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
->>>>>>> sss
       }
     }
   }

@@ -32,8 +32,4 @@ export class ArticleAttachmentsComponent implements OnInit {
       downloadLink.click();
     });
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> sss
 }
