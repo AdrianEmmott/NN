@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ArticleService } from 'src/app/services/article.service';
+import { ArticleService } from 'src/app/services/articles/article.service';
 import { ArticleBodyComponent } from 'src/app/components/article/article-body/article-body.component';
 import { ArticleMetadataComponent } from 'src/app/components/article/article-metadata/article-metadata.component';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Article } from '../../models/article.models';
+import { Article } from '../../models/articles/article.models';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({

@@ -1,7 +1,7 @@
 import { OnInit, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TagModel } from './models/article.models';
-import { TagService } from './services/tag.service';
+import { TagModel } from './models/articles/article.models';
+import { TagService } from './services/articles/tags/tag.service';
 import { LanderComponent } from './components/lander/lander.component';
 import { ArticleComponent } from './components/article/article.component';
 @Injectable()

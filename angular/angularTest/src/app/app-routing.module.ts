@@ -3,9 +3,9 @@ import { Routes, RouterModule, Router, Route } from '@angular/router';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { PublisherComponent } from 'src/app/components/publisher/publisher.component';
 import { ArticleComponent } from 'src/app/components/article/article.component';
-import { TagModel } from './models/article.models';
+import { TagModel } from './models/articles/article.models';
 import { Observable } from 'rxjs';
-import { TagService } from './services/tag.service';
+import { TagService } from './services/articles/tags/tag.service';
 import { LanderComponent } from './components/lander/lander.component';
 
 const routes: Routes = [

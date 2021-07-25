@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
-import { Article } from '../../../models/article.models';
+import { Article } from '../../../models/articles/article.models';
 import { FileUploadService } from '../../../services/uploaders/file-uploader/file-upload-service';
 
 

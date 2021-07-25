@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using webApi.Contracts;
-using webApi.Models;
+using webApi.Contracts.Articles;
+using webApi.Contracts.Articles.Tags;
+using webApi.Models.Articles;
+using webApi.Models.Articles.Tags;
 
-namespace webApi.Services
+namespace webApi.Services.Articles
 {
     public class ArticleService : IArticleService
     {

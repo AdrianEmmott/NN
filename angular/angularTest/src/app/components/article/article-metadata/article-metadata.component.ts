@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Article, ArticleTagModel } from '../../../models/article.models';
-import { TagService } from '../../../services/tag.service';
+import { Article, ArticleTagModel } from '../../../models/articles/article.models';
+import { TagService } from '../../../services/articles/tags/tag.service';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';

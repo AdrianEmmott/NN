@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap, UrlTree, PRIMARY_OUTLET, UrlSegment, UrlSegmentGroup } from '@angular/router';
-import { TagService } from '../../services/tag.service';
-import { ArticleService } from '../../services/article.service';
-import { TagModel, ArticleSummary } from '../../models/article.models';
+import { TagService } from '../../services/articles/tags/tag.service';
+import { ArticleService } from '../../services/articles/article.service';
+import { TagModel, ArticleSummary } from '../../models/articles/article.models';
 import { Observable } from 'rxjs';
 import { AppSettingsService } from '../../services/app-settings.service';
 

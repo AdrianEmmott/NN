@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
-import { TagService } from '../../services/tag.service';
-import { TagModel } from '../../models/article.models';
+import { TagService } from '../../services/articles/tags/tag.service';
+import { TagModel } from '../../models/articles/article.models';
 import { Observable } from 'rxjs';
 
 @Component({

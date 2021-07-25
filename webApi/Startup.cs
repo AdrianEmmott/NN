@@ -12,9 +12,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using webApi.Contracts;
+using webApi.Contracts.Articles;
+using webApi.Contracts.Articles.Publisher;
+using webApi.Contracts.Articles.Tags;
 using webApi.CustomBinders;
 using webApi.Models.SiteSettings;
 using webApi.Services;
+using webApi.Services.Articles;
+using webApi.Services.Articles.Publisher;
+using webApi.Services.Articles.Tags;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 

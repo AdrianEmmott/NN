@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using Microsoft.AspNetCore.Hosting;
 
-using System.Web;
-using System.IO;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-//using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using webApi.Models.SiteSettings;
 
+using System.IO;
+using System.Threading;
+using System.Web;
+
+using webApi.Models.SiteSettings;
 
 namespace webApi.Controllers
 {
@@ -21,18 +21,18 @@ namespace webApi.Controllers
     [Route("api/file-manager")]
     public class FileManagerController : BaseController
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public FileManagerController(IWebHostEnvironment webHostEnvironment,
-        IOptions<SiteSettingsModel> siteSettings)
-        : base(siteSettings)
-        => _webHostEnvironment = webHostEnvironment;
+        public FileManagerController(IOptions<SiteSettingsModel> siteSettings,
+        IWebHostEnvironment webHostEnvironment)
+        : base(siteSettings, webHostEnvironment) { }
 
         [HttpGet("download/{fileType}")]
         public IActionResult Get(string fileType, [FromQuery] string link)
         {
-            var filePath = fileType.Equals("image") ? base.SiteSettings.Uploads.FilePath : base.SiteSettings.Uploads.ImagePath;
-            string webRootPath = Path.Combine(_webHostEnvironment.WebRootPath, filePath);
+            var filePath = fileType.Equals("image")
+            ? base.SiteSettings.Uploads.FilePath
+            : base.SiteSettings.Uploads.ImagePath;
+
+            string webRootPath = Path.Combine(WebHostEnvironment.WebRootPath, filePath);
             var filename = link.Substring(link.LastIndexOf('/') + 1);
 
             var net = new System.Net.WebClient();
@@ -50,7 +50,9 @@ namespace webApi.Controllers
             {
                 var httpRequest = HttpContext.Request;
 
-                var uploadPath = fileType.Equals("image") ? base.SiteSettings.Uploads.ImagePath : base.SiteSettings.Uploads.FilePath;
+                var uploadPath = fileType.Equals("image")
+                ? base.SiteSettings.Uploads.ImagePath
+                : base.SiteSettings.Uploads.FilePath;
 
                 if (httpRequest.Form.Files.Count > 0)
                 {
@@ -61,11 +63,11 @@ namespace webApi.Controllers
 
                         string formattedFilename = postedFile.FileName.Replace(" ", "");
 
-                        string webRootPath = Path.Combine(_webHostEnvironment.WebRootPath, uploadPath);
-                        string contentRootPath = _webHostEnvironment.ContentRootPath;
+                        string webRootPath = Path.Combine(WebHostEnvironment.WebRootPath, uploadPath);
+                        string contentRootPath = WebHostEnvironment.ContentRootPath;
                         string path = "";
 
-                        if (string.IsNullOrWhiteSpace(_webHostEnvironment.WebRootPath))
+                        if (string.IsNullOrWhiteSpace(WebHostEnvironment.WebRootPath))
                         {
                             path = Path.Combine(Directory.GetCurrentDirectory(), uploadPath);
                         }

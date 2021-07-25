@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleSummary } from '../../../models/article.models';
-import { ArticleService } from '../../../services/article.service';
+import { ArticleSummary } from '../../../models/articles/article.models';
+import { ArticleService } from '../../../services/articles/article.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute, UrlTree, UrlSegmentGroup, PRIMARY_OUTLET, UrlSegment } from '@angular/router';

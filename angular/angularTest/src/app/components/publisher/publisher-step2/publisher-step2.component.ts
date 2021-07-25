@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArticlePublisherService } from 'src/app/services/article.publisher.service';
-import { ArticleService } from 'src/app/services/article.service';
-import { Article } from '../../../models/article.models';
+import { ArticlePublisherService } from 'src/app/services/articles/publisher/article.publisher.service';
+import { ArticleService } from 'src/app/services/articles/article.service';
+import { Article } from '../../../models/articles/article.models';
 
 import * as CEditor from 'src/assets/my-ckeditor-build/ckeditor.js';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Article } from '../../../models/article.models';
+import { Article } from '../../../models/articles/article.models';
 import { ImageUploadService } from '../../../services/uploaders/image-uploader/image-upload-service';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
