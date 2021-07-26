@@ -50,7 +50,7 @@ import { AppSettingsService } from './services/app-settings.service';
 
 import { RemoveSlashesAndDashesDirective } from './directives/remove-slashes-and-dashes.directive';
 
-import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
