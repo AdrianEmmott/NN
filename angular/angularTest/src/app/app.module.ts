@@ -52,6 +52,8 @@ import { RemoveSlashesAndDashesDirective } from './directives/remove-slashes-and
 
 //import { ToastrModule } from 'ngx-toastr';
 
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,

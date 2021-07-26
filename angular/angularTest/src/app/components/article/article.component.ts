@@ -23,9 +23,9 @@ export class ArticleComponent implements OnInit {
               private router: Router,
               private sanitizer: DomSanitizer) { }
 
-  public articleObservable$: Observable<Article>;
-  public safeContent: SafeHtml;
-  private article: Article;
+  articleObservable$: Observable<Article>;
+  safeContent: SafeHtml;
+  article: Article;
 
   ngOnInit() {
     this.getArticle();

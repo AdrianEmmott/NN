@@ -27,11 +27,11 @@ export class PublisherComponent implements OnInit {
     private articlePublisherService: ArticlePublisherService,
     private tagService: TagService) { }
 
-  public articleObservable$: Observable<Article>;
-  public articleTagsObservable$: Observable<ArticleTagModel>;
+  articleObservable$: Observable<Article>;
+  articleTagsObservable$: Observable<ArticleTagModel>;
 
-  private article: Article;
-  private articleTags: ArticleTagModel;
+  article: Article;
+  articleTags: ArticleTagModel;
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');

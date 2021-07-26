@@ -16,12 +16,12 @@ export class ArticleSidebarComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
-  private articleSummary: ArticleSummary;
+  articleSummary: ArticleSummary;
 
-  private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
-  private articleSummaryByTagPath: Array<ArticleSummary>;
-  private urlSegments: Array<UrlSegment>;
-  private tagPath: string;
+  articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
+  articleSummaryByTagPath: Array<ArticleSummary>;
+  urlSegments: Array<UrlSegment>;
+  tagPath: string;
 
   ngOnInit() {
     this.getArticlesSummary();

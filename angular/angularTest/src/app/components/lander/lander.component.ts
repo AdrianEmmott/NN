@@ -13,19 +13,19 @@ import { AppSettingsService } from '../../services/app-settings.service';
 })
 export class LanderComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(public router: Router,
               private route: ActivatedRoute,
               private articleService: ArticleService,
               private tagService: TagService
               , private appSettingsService: AppSettingsService) { }
 
-  public tagObservable$: Observable<Array<TagModel>>;
-  public tags: Array<TagModel>;
-  public pageTitle: string;
+  tagObservable$: Observable<Array<TagModel>>;
+  tags: Array<TagModel>;
+  pageTitle: string;
 
-  private articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
-  private articleSummaryByTagPath: Array<ArticleSummary>;
-  private urlSegments: Array<UrlSegment>;
+  articleSummaryByTagPath$: Observable<Array<ArticleSummary>>;
+  articleSummaryByTagPath: Array<ArticleSummary>;
+  urlSegments: Array<UrlSegment>;
   urlSegmentsArr = new Array<string>();
     
   ngOnInit() {
