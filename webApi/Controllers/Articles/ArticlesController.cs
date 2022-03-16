@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +6,12 @@ using Microsoft.Extensions.Options;
 
 using webApi.Models.Articles;
 using webApi.Contracts.Articles;
-using webApi.Services.Articles;
+
 using webApi.Models.SiteSettings;
+using MediatR;
+using webApi.Queries;
+using System;
+using webApi.Queries.Tags;
 
 namespace webApi.Controllers.Articles
 {
@@ -21,44 +20,48 @@ namespace webApi.Controllers.Articles
     [ApiController]
     public class ArticlesController : BaseController
     {
-        private readonly IArticleService _articleService;
+        private readonly IMediator _mediator;
+        //private readonly IArticleService _articleService;
 
-        public ArticlesController(IArticleService articleService,
+        public ArticlesController(//IArticleService articleService,
+            IMediator mediator,
             IOptions<SiteSettingsModel> siteSettings,
             IWebHostEnvironment webHostEnvironment)
             : base(siteSettings, webHostEnvironment)
-            => _articleService = articleService;
+            => _mediator = mediator;
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<ArticleModel>> Get()
         {
-            return _articleService.GetArticles();
+            return null;
+            //return _articleService.GetArticles();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        public ActionResult Get(Guid id)
         {
-            var httpRequest = HttpContext.Request.Host.Value;
+            var model = _mediator.Send(new GetArticleQuery(id));
 
-            var model = _articleService.GetArticle(id);
-            return Ok(model);
+            return Ok(model.Result);
         }
 
         // GET api/articles/summary
         [HttpGet("summary")]
-        public ActionResult GetArticlesSummary(int id)
+        public ActionResult GetArticlesSummary()
         {
-            var model = _articleService.GetArticlesSummary();
-            return Ok(model);
+            return null;
+            //var model = _articleService.GetArticlesSummary();
+            //return Ok(model);
         }
 
-        [HttpGet("summary/tagpaths")]
-        public ActionResult GetArticlesSummaryByTagPath([FromQuery(Name = "tags")] string tags)
+        [HttpGet("summary/{tagId}")]
+        public ActionResult GetArticlesSummaryByTagPath(Guid tagId)
         {
-            var model = _articleService.GetArticlesSummaryByTagPath(tags);
-            return Ok(model);
+            var model = _mediator.Send(new GetArticlesByTagQuery(tagId));
+
+            return Ok(model.Result);
         }
 
 

@@ -34,18 +34,6 @@ export class ArticleSidebarComponent implements OnInit {
     const tree: UrlTree = this.router.parseUrl(this.router.url);
     const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
     this.urlSegments = g.segments;
-    // console.log(this.urlSegments);
-    // s[0].path; // returns 'team'
-    // s[0].parameters; // returns {id: 33}
-    // console.log(this.urlSegments[0].path);
-
-
-    // this.urlSegments.forEach(segment => {
-    //   if (segment.path === 'articles') {
-    //     console.log('in there in there in there ');
-    //     console.log(segment);
-    //   }
-    // });
   }
 
   getArticlesSummary() {
@@ -62,18 +50,15 @@ export class ArticleSidebarComponent implements OnInit {
       urlSegmentsArr.push(segment.path);
     }
 
-    console.log(urlSegmentsArr);
     this.tagPath = urlSegmentsArr.join('/');
 
-    this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(urlSegmentsArr);
+    this.articleSummaryByTagPath$ = this.articleService.getArticlesSummaryByTagPath(null);
 
     this.articleSummaryByTagPath$.subscribe((summary: Array<ArticleSummary>) => {
       summary.forEach(x=>{
         x.headerImage = 
         this.articleService.appendApiUrlToHeaderImage(x.headerImage);});
-
-        console.log(summary);
-
+        
       this.articleSummaryByTagPath = summary;
     });
   }

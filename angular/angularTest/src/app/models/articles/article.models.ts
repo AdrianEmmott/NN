@@ -1,7 +1,7 @@
 import { SafeHtml } from '@angular/platform-browser';
 
 export class Article {
-    id: number;
+    id: string;
     title: string;
     headerImage: string;
     subtitle: string;
@@ -10,8 +10,9 @@ export class Article {
     content: string;
     author: string;
     publishDate: Date;
-    tagIds: Array<number>;
     attachments: Array<string> = new Array<string>();
+
+    tags: Array<TagModel>;
   }
 
 export class ArticleSummary {
@@ -27,7 +28,7 @@ export class ArticleSummary {
   }
 
 export class TagModel {
-    id: number;
+    id: string;
     title: string;
     showInNav: boolean;
     sortOrder: number;
@@ -39,7 +40,8 @@ export class TagModel {
   }
 
 export class ArticleTagModel {
-  articleId: number;
-  tagIds: Array<number>;
-  tags: Array<TagModel>;
+  articleId: string;
+  tagId: string;
+  //tagIds: Array<string>;
+  //tags: Array<TagModel>;
 }

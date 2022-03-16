@@ -1,5 +1,5 @@
 export class CreateArticleResponseModel {
-    result: number;
+    result: string;
     id: number;
     exception: string;
     status: number;

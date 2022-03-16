@@ -3,10 +3,10 @@
     margin: 0 0 3em 0;
     h1
     {
-        font-size: 1.6em;
+        font-size: 3em;
     }
     .article-summary {
-        border-bottom: #dcdcdc solid 1px;
+        border-bottom: #444 solid 1px;
         padding: 2em 0;
         margin: 0;
         .title {
@@ -15,19 +15,28 @@
         }
         .publish-date {
             left: 0;
-            top: 1.3em;
-            background-color: #d52349;
+            top: 0.8em;
+            background-color: #122;
             font-size: 2em;
             font-weight: bold;
             text-align: center;
             vertical-align: middle;
             color: #fff;
             line-height: 1em;
-            padding: 1em;
+            
             float: left;
-            margin: 0 0.5em 0 0;
+            margin: 0 0.5em 0.5em 0;
             height: 140px;
             width: 140px;
+            .day {
+                padding: 0.5em 0 0 0em;
+                font-size: 1.4em;
+                margin: 0 0 0.3em 0; 
+            }
+            .month {
+                font-size: .8em;
+                letter-spacing: .4em;
+            }
         }
         .summary-text {
             font-size: 1.1em;

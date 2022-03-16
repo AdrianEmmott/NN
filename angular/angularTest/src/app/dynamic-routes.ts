@@ -1,13 +1,13 @@
 import { OnInit, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TagModel } from './models/articles/article.models';
-import { TagService } from './services/articles/tags/tag.service';
+import { TagService } from './services/tags/tag.service';
 import { LanderComponent } from './components/lander/lander.component';
 import { ArticleComponent } from './components/article/article.component';
 @Injectable()
 export class DynamicRoutes {
     constructor(private tagService: TagService, ) {
-        // alert(1);
+        alert("IN DYNMAICROUTES");
         // this.getTags();
     }
 
@@ -17,7 +17,10 @@ export class DynamicRoutes {
 
 
     getTags() {
-        // alert();
+         alert();
+
+console.log("in dynamic routes");
+
         this.tagObservable$ = this.tagService.getTagsFlattened();
 
         this.tagObservable$.subscribe((tags: Array<TagModel>) => {

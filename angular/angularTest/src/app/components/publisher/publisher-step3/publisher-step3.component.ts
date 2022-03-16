@@ -13,21 +13,15 @@ export class PublisherStep3Component implements OnInit {
   constructor(private fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
-    console.log("in there");
-    console.log(this.article);
   }
 
   fileUpload(fileInputEvent: any) {
     var file = fileInputEvent.target.files[0];
-    console.log(file);
     
     let upload$ = this.fileUploadService.uploadFile(file);
     
     upload$.subscribe((result: any) => {
-      console.log(result);
-      console.log(this.article.attachments);
-      this.article.attachments.push(result.url);
-      console.log(this.article.attachments);      
+      this.article.attachments.push(result.url); 
     });
   }
 }

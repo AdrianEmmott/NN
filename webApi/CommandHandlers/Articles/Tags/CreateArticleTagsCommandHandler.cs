@@ -1,26 +1,15 @@
-// using Microsoft.VisualStudio.Text.UI.Commanding;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using webApi.Commands;
-using webApi.Commands.Articles.Publisher;
-using webApi.Commands.Articles.Tags;
-using webApi.Contracts.Articles.Tags;
-using webApi.Services.Articles.Publisher;
+using webApi.Commands.Tags;
 
 namespace webApi.CommandHandlers.Publisher
 {
     public class CreateArticleTagsCommandHandler : IRequestHandler<CreateArticleTagsCommand>
     {
-        private readonly ITagService _tagService;
-
-        public CreateArticleTagsCommandHandler(ITagService tagService) 
-            => _tagService = tagService;
-        
         public Task<Unit> Handle(CreateArticleTagsCommand request, CancellationToken cancellationToken)
         {
-            _tagService.CreateArticleTags(request.ArticleTags);
-            return Task.FromResult(Unit.Value);
+            return null;
         }
     }
 }

@@ -1,11 +1,11 @@
 <!-- Content -->
 <article class="box post" *ngIf="article">
-    <section class="image featured" *ngIf="article.headerImage">
+    <!-- <section class="image featured" *ngIf="article.headerImage">
         <img src="{{article.headerImage}}" alt="">
-    </section>
-    <header>
-        <h1>{{article.title}}</h1>
-        <p>{{article.subtitle}}</p>
+    </section> -->
+    <header *ngIf="article.subtitle !== undefined">
+        <!-- <h1>{{article.title}}</h1> -->
+        <p >{{article.subtitle}}</p>
     </header>
     <section [innerHTML]="article.content"></section>
     <app-article-attachments [article]="article"></app-article-attachments>

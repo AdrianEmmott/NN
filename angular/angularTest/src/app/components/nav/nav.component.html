@@ -2,6 +2,8 @@
   <ul>
     <li routerLinkActive="current" [routerLinkActiveOptions]="{exact:
       true}"><a [routerLink]="'/'">Home</a></li>
-    <li routerLinkActive="current" *ngFor="let tag of navTags"><a routerLink="{{ tag.path }}">{{ tag.title }}</a></li>
+    <li routerLinkActive="current" *ngFor="let tag of navTags">
+      <a routerLink="{{ tag.path }}">{{ tag.title | titlecase }}</a>
+    </li>
   </ul>
 </nav>

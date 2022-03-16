@@ -129,7 +129,7 @@
 		}
 
 	body {
-		background: #ffffff;
+		background: #020302;
 		background-image: url('/assets/images/bg.png');
 
 		// Stops initial animations until page loads.
@@ -145,7 +145,7 @@
 	body, input, textarea, select {
 		font-family: 'Source Sans Pro';
 		font-weight: 300;
-		color: #5d5d5d;
+		color: #bbb;
 		font-size: 14pt;
 		line-height: 1.75em;
 	}
@@ -160,7 +160,7 @@
 
 
 	strong, b {
-		color: #252122;
+		color: #dcdcdc;
 		font-weight: 400;
 	}
 
@@ -187,7 +187,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #252122;
+		color: #acacac;
 		font-weight: 700;
 	}
 
@@ -212,11 +212,11 @@
 	}
 
 	a {
-		color: #d52349;
-		text-decoration: underline;
+		color: #ccc;
+		text-decoration: none;
 
 		&:hover {
-			text-decoration: none;
+			text-decoration: underline;
 		}
 	}
 
@@ -412,8 +412,8 @@
 /* Box */
 
 	.box {
-		background: #ffffff;
-		border-bottom: solid 1px #ccc;
+		background: #090909;
+		border-bottom: solid 1px #555;
 		padding: 2.75em 1.75em 2.75em 1.75em;
 
 		.image {
@@ -872,7 +872,7 @@
 
 	#header {
 		position: relative;
-		background: #ffffff;
+		background: #010101;
 		border-bottom: solid 1px #ccc;
 		padding: 5em 0 4em 0;
 		text-align: center;
@@ -1072,7 +1072,7 @@
 
 	#main {
 		position: relative;
-		background: #f7f7f7 url('/assets/images/bg.png');
+		background: #101010 url('/assets/images/bg.png');
 		padding: 2em 0 4em 0;
 
 		&:before {
@@ -1167,7 +1167,7 @@
 		/* Basic */
 
 			body, input, textarea, select {
-				font-size: 12pt;
+				font-size: 14pt;
 			}
 
 	}
@@ -1656,7 +1656,7 @@
 				padding: 2em 0;
 
 				h1 {
-					color: #252122;
+					color: #dcdcdc;
 					font-weight: 900;
 					font-size: 1.75em;
 					letter-spacing: -0.035em;

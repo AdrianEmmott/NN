@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article, ArticleTagModel } from '../../../models/articles/article.models';
-import { TagService } from '../../../services/articles/tags/tag.service';
+import { TagService } from '../../../services/tags/tag.service';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class ArticleMetadataComponent implements OnInit {
   getArticleTags() {
     this.articleTagsObservable$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.tagService.getTagsByArticleId(+params.get('id')))
+        this.tagService.getTagsByArticleId(params.get('id')))
     );
 
     this.articleTagsObservable$.subscribe((articleTags: ArticleTagModel) => {

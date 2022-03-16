@@ -1,3 +1,8 @@
+<section class="">
+    <h1 style="font-size:2em">{{ article.title }}</h1>
+    <img *ngIf="article.headerImage" src="{{article.headerImage}}" alt="" style="width: 100%">
+    <p style="text-align: right;"><span>{{ article.author }},</span>&nbsp;<span>{{ article.publishDate | date: 'dd MMM YYYY' }}</span></p>
+</section>
 <section class="col-8 col-12-medium imp-medium" *ngIf="article">
     <app-article-body [article]="article"></app-article-body>
     <app-article-metadata [article]="article"></app-article-metadata>

@@ -4,7 +4,7 @@ import { PublisherStep1Component } from 'src/app/components/publisher/publisher-
 import { PublisherStep2Component } from 'src/app/components/publisher/publisher-step2/publisher-step2.component';
 import { ArticlePublisherService } from 'src/app/services/articles/publisher/article.publisher.service';
 import { ArticleService } from 'src/app/services/articles/article.service';
-import { TagService } from 'src/app/services/articles/tags/tag.service';
+import { TagService } from 'src/app/services/tags/tag.service';
 import { Article, ArticleTagModel } from '../../models/articles/article.models';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap, convertToParamMap } from '@angular/router';
@@ -35,8 +35,7 @@ export class PublisherComponent implements OnInit {
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('id');
-    // console.log(idParam);
-
+    
     if (idParam != null) {
       this.getArticleTags();
       this.getArticle();
@@ -48,12 +47,6 @@ export class PublisherComponent implements OnInit {
           this.article = article;
 
           this.article.headerImage = this.articleService.appendApiUrlToHeaderImage(this.article.headerImage);
-          // console.log(this.article);
-
-          if (this.article != null) {
-            // console.log(this.articleTags);
-            this.article.tagIds = this.articleTags.tagIds;
-          }
         });
       });
     } else {
@@ -65,14 +58,14 @@ export class PublisherComponent implements OnInit {
   getArticle() {
     this.articleObservable$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.articleService.getArticle(+params.get('id')))
+        this.articleService.getArticle(params.get('id')))
     );
   }
 
   getArticleTags() {
     this.articleTagsObservable$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.tagService.getTagsByArticleId(+params.get('id')))
+        this.tagService.getTagsByArticleId(params.get('id')))
     );
   }
 
@@ -98,22 +91,21 @@ export class PublisherComponent implements OnInit {
   }
 
   getArticleDataFromStep5() {
-    this.article.tagIds = this.step2Component.article.tagIds;
+    
   }
 
-  upsertArticleClick() {
+  saveArticle() {
     const articleTags = new ArticleTagModel();
 
-    if (this.article.id > 0) {
+    if (this.article.id !== null && this.article.id !== undefined) {
       this.articlePublisherService.updateArticle(this.article);
       articleTags.articleId = this.article.id;
-      articleTags.tagIds = this.article.tagIds;
-      this.tagService.updateArticleTags(articleTags);
+      
+      //this.tagService.updateArticleTags(this.article.tags);
     } else {
       this.articlePublisherService.createArticle(this.article).subscribe(response => {
         this.article.id = response.result;
         articleTags.articleId = this.article.id;
-        articleTags.tagIds = this.article.tagIds;
         this.tagService.createArticleTags(articleTags);
       });
     }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,14 @@ export class AppSettingsService {
   }
 
   loadAppConfig() {
-    return this.httpClient.get('/assets/app-settings.json')
-      .toPromise()
-      .then(data => {
+    var test = this.httpClient.get('/assets/app-settings.json').pipe(
+      tap((data) => {
         this.baseUrl = data["BaseUrl"];
         this.apiUrl = data["APIUrl"];
-        this.exportFileLocation = data["ExportFileLocation"];
-        this.archiveFileLocation = data["ArchiveFileLocation"];
         this.downloadLocation = data["DownloadLocation"];
-      });
+      })
+    );
+
+    return test;
   }
 }

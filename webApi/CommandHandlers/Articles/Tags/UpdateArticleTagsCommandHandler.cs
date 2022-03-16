@@ -1,27 +1,55 @@
-// using Microsoft.VisualStudio.Text.UI.Commanding;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using webApi.Commands;
-using webApi.Commands.Articles.Publisher;
-using webApi.Commands.Articles.Tags;
-using webApi.Contracts.Articles.Publisher;
-using webApi.Contracts.Articles.Tags;
-using webApi.Services.Articles.Publisher;
+using webApi.Commands.Tags;
+using webApi.Data.Entities;
+using webApi.Models.Tags;
 
 namespace webApi.CommandHandlers.Publisher
 {
     public class UpdateArticleTagsCommandHandler : IRequestHandler<UpdateArticleTagsCommand>
     {
-        private readonly ITagService _tagService;
-
-        public UpdateArticleTagsCommandHandler(ITagService tagService) 
-            => _tagService = tagService;
-        
         public Task<Unit> Handle(UpdateArticleTagsCommand request, CancellationToken cancellationToken)
         {
-            _tagService.UpdateArticleTags(request.ArticleTags);
-            return Task.FromResult(Unit.Value);
+            using (var context = new NewsContext())
+            {
+                // get list of existing article tags in db
+                List<ArticleTagModel> existingRecords =
+                context.ArticleTags
+                    .Where(x => x.ArticleId == request.ArticleTags.FirstOrDefault().ArticleId)
+                    .Select(y => new ArticleTagModel
+                    {
+                        ArticleId = y.ArticleId,
+                        TagId = y.TagId
+                    })
+                    .ToList();
+
+                // records to delete (not in incoming model but in db)
+                List<ArticleTagModel> recordsToDelete = 
+                    existingRecords.Where(existing => !request.ArticleTags
+                                    .Select(modelRecords => modelRecords.TagId)
+                                    .ToList()
+                                    .Contains(existing.TagId))
+                                .Select(existing => existing)
+                                .ToList();
+
+                // records to insert (not in the db)   
+                List<ArticleTagModel> recordsToInsert = 
+                    request.ArticleTags.Where(newRecord => !existingRecords
+                                    .Select(existing => existing.TagId)
+                                    .ToList()
+                                    .Contains(newRecord.TagId))
+                                .Select(newRecord => newRecord)
+                                .ToList();
+
+                                
+            }
+
+            return null;
         }
     }
 }

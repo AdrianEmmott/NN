@@ -18,7 +18,7 @@ export class ArticlePublisherService {
     }
 
   public upsertArticle(article: Article) {
-    if (article.id === 0) {
+    if (article.id === null || article.id === undefined) {
       return this.createArticle(article);
     } else {
       return this.updateArticle(article);

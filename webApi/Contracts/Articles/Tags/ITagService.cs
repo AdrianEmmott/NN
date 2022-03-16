@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using webApi.Models.Articles.Tags;
+using webApi.Models.Tags;
 
 namespace webApi.Contracts.Articles.Tags
 {

@@ -53,6 +53,7 @@ import { RemoveSlashesAndDashesDirective } from './directives/remove-slashes-and
 //import { ToastrModule } from 'ngx-toastr';
 
 import 'hammerjs';
+import { AppSettingsModel } from './models/app-settings.model';
 
 @NgModule({
   declarations: [
@@ -108,17 +109,12 @@ import 'hammerjs';
     LanderComponent
   ],
   providers: [
-    DynamicRoutes
+    AppSettingsService
     , {
       provide: APP_INITIALIZER,
       multi: true,
       deps: [AppSettingsService],
-      useFactory: (appSettingsService: AppSettingsService) => {
-        return () => {
-          //Make sure to return a promise!
-          return appSettingsService.loadAppConfig();
-        };
-      }
+      useFactory: (appSettingsService: AppSettingsService) => () => appSettingsService.loadAppConfig()
     }],
   bootstrap: [AppComponent]
 })

@@ -21,13 +21,10 @@ export class PublisherStep1Component implements OnInit {
 
   selectImage(fileInputEvent: any) {
     var file = fileInputEvent.target.files[0];
-    console.log(file);
 
     let upload$ = this.imageUploadService.setImageMainArticle(file);
     upload$.subscribe((result: any) => {
-      console.log(result);
       this.article.headerImage = result.url;
-      console.log(this.article.headerImage);
     });
   }
 

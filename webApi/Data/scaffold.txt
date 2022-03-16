@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "server=localhost;user=SA;password='dog1Open£';database=News" Microsoft.EntityFrameworkCore.SqlServer --output-dir 'Data/Entities' --force

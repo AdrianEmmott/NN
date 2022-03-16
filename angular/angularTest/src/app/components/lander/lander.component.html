@@ -4,7 +4,7 @@
         <div>
             <h1>
             <a *ngFor="let segment of urlSegments; let i = index" 
-            href="{{urlSegmentsArr[i]}}">
+            href="{{ urlSegmentsArr[i] }}">
                <span removeSlashesAndDashes>/{{segment}}</span>
             </a>
         </h1>
@@ -13,7 +13,10 @@
         
     <div class="article-summary clearfix" *ngFor="let article of articleSummaryByTagPath">
         <a [routerLink]="[router.url + '/articles', article.id]">
-            <section class="publish-date">{{ article.formattedPublishDate.toUpperCase() }}</section>
+            <section class="publish-date">
+                <p class="day">{{ article.publishDate | date: 'dd' }}</p>
+                <p class="month">{{ article.publishDate | date: 'MMM' | uppercase }}</p>
+            </section>
             <img class="image" src="{{ article.headerImage }}" alt="{{ article.title }}" *ngIf="article.headerImage !== null" /></a>
         <a class="title" [routerLink]="[router.url + '/articles', article.id]">{{ article.title }}</a>
         <p class="summary-text">{{ article.summary }}</p>

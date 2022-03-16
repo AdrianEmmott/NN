@@ -34,7 +34,7 @@ export class ArticleComponent implements OnInit {
   getArticle() {
     this.articleObservable$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.articleService.getArticle(+params.get('id')))
+        this.articleService.getArticle(params.get('id')))
     );
 
     this.articleObservable$.subscribe((article: Article) => {

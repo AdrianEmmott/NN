@@ -14,25 +14,20 @@ export class RemoveSlashesAndDashesDirective implements OnInit {
   }
 
   ngAfterViewInit(){
-    //console.log(this.el);
-
     var textValue = this.el.nativeElement.innerHTML;
-    //debugger;
+
     if(textValue !== undefined) {
       const forwardSlashRegex = /(\/)/g;
       const hyphensRegex = /-/g;
   
       textValue  = textValue.replace(forwardSlashRegex, " > ");
       textValue = textValue.replace(hyphensRegex, " ");
-  
-      //console.log(textValue);
-  
+
       this.el.nativeElement.innerHTML = textValue;
     } 
   }
 
   ngDoCheck() {
-//debugger;
     
   }
 }

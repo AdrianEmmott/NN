@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-
-using MediatR;
-
 using webApi.Models.Articles.Publisher;
 using webApi.Contracts.Articles.Publisher;
-using webApi.Services.Articles.Publisher;
-using webApi.CommandHandlers.Articles.Publisher;
 using webApi.Commands.Articles.Publisher;
 
 

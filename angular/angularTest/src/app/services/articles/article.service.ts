@@ -11,17 +11,19 @@ export class ArticleService {
   controllerName: string;
 
   constructor(private httpClient: HttpClient
-    ,  private appSettingsService: AppSettingsService) {
-      this.controllerName = this.appSettingsService.apiUrl + 'articles';
-    }
+    , private appSettingsService: AppSettingsService) {
 
-  public getArticle(id: number): Observable<Article> {
+    this.controllerName = this.appSettingsService.apiUrl + 'articles';
+  }
+
+  public getArticle(id: string): Observable<Article> {
     const article = this.httpClient
+      //.get<Article>(this.controllerName + '/' + 'a266a0b3-a4a7-4b7d-942b-35a67bc2a320');
       .get<Article>(this.controllerName + '/' + id);
     return article;
   }
 
-  public getArticles(): Observable<Article> {
+  public getArticles(): Observable<Article> {/*  */
     const articles = this.httpClient
       .get<Article>(this.controllerName);
 
@@ -30,32 +32,31 @@ export class ArticleService {
 
   public getArticlesSummary(): Observable<ArticleSummary> {
     const articlesSummary = this.httpClient
-      .get<ArticleSummary>(this.controllerName +'/summary');
+      .get<ArticleSummary>(this.controllerName + '/summary');
     return articlesSummary;
   }
 
-  public getArticlesSummaryByTagPath(tagPaths: Array<string>): Observable<Array<ArticleSummary>> {
+  public getArticlesSummaryByTagPath(tagId: string): Observable<Array<ArticleSummary>> {
     var articleSummaries = this.httpClient
-      .get<Array<ArticleSummary>>(this.controllerName + '/summary/tagpaths?tags=' + tagPaths);
+      .get<Array<ArticleSummary>>(this.controllerName + '/summary/' + tagId);
 
-      return articleSummaries;
+    return articleSummaries;
   }
 
-  appendApiUrlToHeaderImage_articleSummaryList(articleSummaries: Array<ArticleSummary>) : Array<ArticleSummary> {
+  appendApiUrlToHeaderImage_articleSummaryList(articleSummaries: Array<ArticleSummary>): Array<ArticleSummary> {
     articleSummaries.forEach((article: ArticleSummary) => {
-      article.headerImage = this.appendApiUrlToHeaderImage(article.headerImage) ;
+      article.headerImage = this.appendApiUrlToHeaderImage(article.headerImage);
     });
 
     return articleSummaries;
   }
 
-  appendApiUrlToHeaderImage(headerImage: string) : string {
-
+  appendApiUrlToHeaderImage(headerImage: string): string {
     if (!headerImage.includes(this.appSettingsService.baseUrl)) {
       headerImage = this.appSettingsService.baseUrl + headerImage;
     }
 
-    headerImage = headerImage.replace("//wwwroot","/wwwroot");
+    headerImage = headerImage.replace("//wwwroot", "/wwwroot");
     return headerImage;
   }
 }
